@@ -5,9 +5,11 @@ import {BsGithub, BsLinkedin} from "react-icons/bs"
 export interface IProfileCardProps {
   photo: string
   name: string  
+  linkLinkedin: string
+  linkGit: string
 }
 
-export function ProfileCard ({name}: IProfileCardProps) {
+export function ProfileCard ({name,photo,linkGit,linkLinkedin}: IProfileCardProps) {
   
   return (
     
@@ -20,10 +22,10 @@ export function ProfileCard ({name}: IProfileCardProps) {
       </div>
       <div className='flex justify-around bg-amarelo-macaco-tranzante py-1'>     
         <div className='text-3xl cursor-pointer'>
-        <BsGithub/>
+        <a href={linkGit}><BsGithub/></a>
         </div>
         <div className='text-blue-500 text-3xl cursor-pointer'> 
-        <BsLinkedin/>
+        <a href={linkLinkedin}><BsLinkedin/></a>
         </div>
       </div>
       <div className=" bg-[#4F5D2F] rounded-b-xl flex justify-center text-xl"> 
