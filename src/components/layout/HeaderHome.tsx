@@ -1,11 +1,14 @@
 import * as React from 'react';
 import {Link} from "react-scroll"
+import {BiUserCircle} from "react-icons/bi"
+import { LoginButton } from './LoginButton';
+
 export interface IHeaderHomeProps {
 }
 
 export default function HeaderHome (props: IHeaderHomeProps) {
   return (
-    <div className="flex">
+    <div className="flex items-center">
     <Link to="explain" smooth={true} duration={3000} >
         <p>
             Sobre
@@ -13,7 +16,7 @@ export default function HeaderHome (props: IHeaderHomeProps) {
     </Link>
     <a>
         <p className='mx-6'>
-            Portifio
+            Portifolio
         </p>
     </a>
     <Link to="aboutus" smooth={true} duration={3000}>
@@ -21,6 +24,9 @@ export default function HeaderHome (props: IHeaderHomeProps) {
             Contato
         </p>
     </Link>
+    <div className='ml-16 text-[1.5em]'>
+        <LoginButton/>
+    </div>
     </div>
   );
 }

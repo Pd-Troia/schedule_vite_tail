@@ -13,7 +13,7 @@ export function Button ({children,handleButton}: IButtonProps) {
     
     return (
     <div>
-        <button className='text-2xl border-2 px-6 py-6 bg-black text-white rounded-3xl' onClick={click}>{children}</button>
+        <button className='dmg:text-xl border-2 px-3 py-3 dmg:px-4 dmg:py-4 sm:px-6 sm:py-6 bg-black text-white rounded-3xl' onClick={click}>{children}</button>
     </div>
   );
 }

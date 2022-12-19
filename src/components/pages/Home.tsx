@@ -8,7 +8,7 @@ export interface IHomeProps {
 
 export function Home (props: IHomeProps) {
   return (
-    <div>
+    <div className='bg-greybg'>
         <HomeFront/>
         <Explain/>
         <AboutUs/>

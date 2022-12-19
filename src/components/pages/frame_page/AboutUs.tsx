@@ -8,7 +8,7 @@ export function AboutUs (props: IAboutUsProps) {
   console.log(typeof photoHyt)
   return (
     <>
-    <div className='flex flex-col items-center p-10 md:flex-row md:justify-around'>
+    <div id="aboutus" className='flex flex-col items-center p-10 md:flex-row md:justify-around'>
       <div className="my-14 md:my-0">
         <ProfileCard 
         name="Hytálo Benaventana"
