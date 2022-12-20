@@ -8,7 +8,7 @@ export interface IHeaderMobileProps {
 export function HeaderMobile (props: IHeaderMobileProps) {
   return (
     <div className='flex justify-between'>
-      <Menu/>
+      <div className='relative'><Menu/></div>
       <LoginButton/>
     </div>
   );

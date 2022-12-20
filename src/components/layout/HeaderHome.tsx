@@ -1,14 +1,15 @@
 import * as React from 'react';
 import {Link} from "react-scroll"
-import {BiUserCircle} from "react-icons/bi"
 import { LoginButton } from './LoginButton';
 
 export interface IHeaderHomeProps {
+    column? : boolean;
 }
 
-export default function HeaderHome (props: IHeaderHomeProps) {
-  return (
-    <div className="flex items-center">
+export default function HeaderHome ({column}: IHeaderHomeProps) {
+    const flex : string = column ? "flex-column" : ""
+    return (
+    <div className={`flex ${flex} items-center justify-center`}>
     <Link to="explain" smooth={true} duration={3000} >
         <p>
             Sobre
