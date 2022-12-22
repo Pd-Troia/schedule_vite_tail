@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Home } from "./components/pages/Home";
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import { Login } from "./components/pages/Login";
-import { SingUp } from "./components/pages/SingUp";
+import { Register } from "./components/pages/Register";
 function App() {  
 
   return (
@@ -11,7 +11,7 @@ function App() {
         <Routes>
         <Route element={<Home/>} path="/"/>  
         <Route element={<Login/>} path="/login"/>   
-        <Route element={<SingUp/>} path="/cadastro"/>       
+        <Route element={<Register/>} path="/cadastro"/>       
         </Routes>
       </BrowserRouter>        
       </>
