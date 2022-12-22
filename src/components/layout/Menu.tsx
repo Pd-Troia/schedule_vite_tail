@@ -14,13 +14,14 @@ export function Menu (props: IMenuProps) {
   return (
     <div>
       <button onClick={toggleMenu}>
-        <BiMenu/>        
+        {!showMenu&&<BiMenu/>}        
       </button>
       {showMenu && (
-        <div className='bg-black flex justify-center items-center absolute left-0 top-0'>
-          <button onClick={toggleMenu}><div className='text-indigo-100'><GrClose/></div></button>
-          <HeaderHome />
+        <div className='bg-purple-300 w-full h-1/2 fixed left-0 top-0'>        
+          <button className='text-black' onClick={toggleMenu}><GrClose/></button>
+          <HeaderHome column={true}/>          
         </div>
+        
       )} 
     </div>
   );

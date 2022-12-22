@@ -20,7 +20,7 @@ export function ProfileCard ({name,photo,linkGit,linkLinkedin}: IProfileCardProp
             <img src={photo} className="rounded-full min-h-full bg-gradient-to-r p-[5px] from-[#242038] to-[#E2C044]"></img>
           </div>      
       </div>
-      <div className='flex justify-around bg-amarelo-macaco-tranzante py-1'>     
+      <div className='flex justify-around bg-yellow-bananna py-1'>     
         <div className='text-3xl cursor-pointer'>
         <a href={linkGit}><BsGithub/></a>
         </div>

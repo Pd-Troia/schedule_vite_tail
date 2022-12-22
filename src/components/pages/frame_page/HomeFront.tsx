@@ -4,13 +4,15 @@ import { Button } from '../../layout/Button';
 import { HeaderMobile } from '../../layout/HeaderMobile';
 import HeaderHome from "../../layout/HeaderHome"
 import calendar from "../../../images/Rectangle 1.png";
+import { LoginButton } from '../../layout/LoginButton';
+import { useNavigate } from 'react-router-dom';
 export interface IHomeFrontProps {
 }
 
 export default function HomeFront (props: IHomeFrontProps) {
-  
+  const navigate = useNavigate()
   const openLogin = ()=>{
-    console.log("apertado")
+    navigate("/cadastro")
   }
   let viewPort = window.innerWidth
 
@@ -22,7 +24,10 @@ export default function HomeFront (props: IHomeFrontProps) {
       <div className='flex flex-col min-w-screen w-full px-12 py-6'>
         {viewPort > 768 ?
         <div className="flex justify-end mx-16 my-6 text-2xl">         
-              <HeaderHome/>              
+              <HeaderHome/>
+              <div className='ml-16 text-[1.5em]'>
+              <LoginButton/>     
+              </div>              
         </div>
       : 
       <div className='text-3xl'>

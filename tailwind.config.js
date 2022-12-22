@@ -6,7 +6,9 @@ module.exports = {
         plexThai: "'IBM Plex Sans Thai Looped',serif",
       },
       colors:{
-        greybg: "#EEF2F1" , 'amarelo-macaco-tranzante': "#E2C044"        
+        greybg: "#EEF2F1" , 
+        "yellow-bananna": "#E2C044",
+        greyFooter: "#DEDEDE"       
       },
       screens:{
         "dmp": "320px",

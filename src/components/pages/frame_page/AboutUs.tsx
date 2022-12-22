@@ -28,12 +28,10 @@ export function AboutUs (props: IAboutUsProps) {
     </div>
     <div>
         <hr/>
-        <p className='text-2xl text-slate-300 mx-3 text-center'>
-        Somos desenvolvedores e apreciadores de jogos cooperativos e uma de nossas maiores dificuldades
-        era organizar o melhor momento para todos os participantes jogarem.        
-        Com isso em mente, estudamos as melhores tecnologias para desenvolver 
-        o Schedule para otimizar o tempo. Acreditamos que essa solução beneficiará muitos outros tipos
-        de usuários
+        <p className='text-xl text-slate-500 mb-5 mt-2 mx-[15.5vw] '>
+        Somos desenvolvedores e apreciadores de jogos cooperativos e uma de nossas maiores dificuldades era organizar o melhor momento para todos os participantes jogarem.        
+        Com isso em mente, estudamos as melhores tecnologias para desenvolver o Schedule para otimizar o tempo. Acreditamos que essa solução beneficiará muitos outros tipos
+        de usuários.
         </p>
     </div> 
     </>
