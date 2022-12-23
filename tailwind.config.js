@@ -8,7 +8,11 @@ module.exports = {
       colors:{
         greybg: "#EEF2F1" , 
         "yellow-bananna": "#E2C044",
-        greyFooter: "#DEDEDE"       
+        greyFooter: "#DEDEDE",
+        greyForm: "#D3CFC6",
+        input: "#ECEAE2",
+        blueLink: "#0B07BC",
+        formPlaceHolder: "#596475",
       },
       screens:{
         "dmp": "320px",
