@@ -1,31 +1,62 @@
 import * as React from 'react';
-
-export interface IRegisterFormProps { 
-  handleSubmit: React.FormEventHandler
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { Input } from './Input';
+export interface IRegisterFormProps {  
+  handleSubmitDad : SubmitHandler<IRegisterFormProps>
+  name?: string
+  confirmPassword?: string
+  password?: string
+  eMail?: string
 }
 
-export function RegisterForm ({handleSubmit}: IRegisterFormProps) {        
-   const inputForm = "bg-input w-[66vw] my-[2vw] rounded-md placeholder-formPlaceHolder" //"Teu Css pros 4 input aq" 
-  return (
+export function RegisterForm ({handleSubmitDad}: IRegisterFormProps) {        
+  const inputForm = "bg-input w-[66vw] my-[2vw] rounded-md placeholder-formPlaceHolder" //"Teu Css pros 4 input aq" 
+  const {register,handleSubmit,formState:{errors}} = useForm<IRegisterFormProps>()  
+    return (
+    
     <div className='bg-greyForm flex justify-center items-center flex-col'>
       <h1 className='text-2xl'>Create account</h1>
-      <form  onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(handleSubmitDad)}>
         <div className='flex justify-center'>          
-          <input className={inputForm} type="text" placeholder=' Nome Completo' />
+           <Input name="name" 
+           type="text"
+           required='true' 
+           placeholder="Nome Completo"
+           register={register} 
+           />         
+          {errors.name && <span>Preencha seu nome</span>}
         </div>
         <div className='flex justify-center'>          
-          <input className={inputForm} type="text" placeholder=' E-mail' />
+          <Input  
+          name="eMail" 
+          type="text" 
+          required="true" 
+          placeholder=' E-mail' 
+          register={register} 
+          />          
+          {errors.eMail && <span>Preencha seu email</span>}
         </div>
         <div className='flex justify-center'>          
-          <input className={inputForm} type="text" placeholder=' Senha'/>
+          <Input  
+          type="password" 
+          name="password" 
+          required="true" 
+          placeholder=' Senha'
+          register={register}/>
+          {errors.password && <span>Preencha sua senha</span>}
         </div>
         <div className='flex justify-center'>          
-          <input className={inputForm} type="text" placeholder=' Confirmar Senha' />
+          <Input type="password"  
+          name="confirmPassword" 
+          required="true" 
+          placeholder=' Confirmar Senha' 
+          register={register}  />
+          {errors.confirmPassword && <span>Confirme sua senha</span>}
         </div>
           <div className='flex justify-center'>
             <input className='rounded-3xl bg-red-600 text-2xl px-[16vw] sm:px-[26vw] dmm:px-[18vw] dmg:px-[19.5vw]
              lg:px-[28vw] py-2 text-white' value="Criar conta" type="submit" />
-          </div>
+          </div>  
         <div className="text-xs">
           <p className='text-center'>Ao criar uma conta, você concorda com nossos <br />
           <a className='cursor-pointer text-blueLink'>Termos de uso</a> e  

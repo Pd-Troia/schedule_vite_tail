@@ -13,6 +13,8 @@ module.exports = {
         input: "#ECEAE2",
         blueLink: "#0B07BC",
         formPlaceHolder: "#596475",
+        greenSucess: "#5DB53F",
+        redFail: "#B31515",
       },
       screens:{
         "dmp": "320px",
