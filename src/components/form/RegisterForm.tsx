@@ -1,19 +1,31 @@
-import * as React from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import {useState} from 'react';
+import { useForm, SubmitHandler} from 'react-hook-form';
 import { Input } from './Input';
 export interface IRegisterFormProps {  
   handleSubmitDad : SubmitHandler<IRegisterFormProps>
   name?: string
   confirmPassword?: string
   password?: string
-  eMail?: string
+  email?: string  
+}
+export interface IRegisterFunctions{
+  validateName: Function
+  validatePassword: Function
+  validateConfirmPassword: Function
+  validateEmail: Function
 }
 
-export function RegisterForm ({handleSubmitDad}: IRegisterFormProps) {        
-  const inputForm = "bg-input w-[66vw] my-[2vw] rounded-md placeholder-formPlaceHolder" //"Teu Css pros 4 input aq" 
-  const {register,handleSubmit,formState:{errors}} = useForm<IRegisterFormProps>()  
-    return (
-    
+export function RegisterForm ({handleSubmitDad,validateEmail,validatePassword,validateConfirmPassword,validateName}: IRegisterFormProps&IRegisterFunctions) {        
+  const {register,handleSubmit,formState:{errors}, watch} = useForm<IRegisterFormProps>({
+    defaultValues: {
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: ""
+    }
+  })   
+  const [wName,wEmail,wPassword,wConfirmPassword] = watch(["name","email","password","confirmPassword"])
+  return (    
     <div className='bg-greyForm flex justify-center items-center flex-col'>
       <h1 className='text-2xl'>Create account</h1>
       <form onSubmit={handleSubmit(handleSubmitDad)}>
@@ -22,19 +34,21 @@ export function RegisterForm ({handleSubmitDad}: IRegisterFormProps) {
            type="text"
            required='true' 
            placeholder="Nome Completo"
-           register={register} 
+           register={register}
+           isValid={validateName(wName)}
            />         
           {errors.name && <span>Preencha seu nome</span>}
         </div>
         <div className='flex justify-center'>          
           <Input  
-          name="eMail" 
+          name="email" 
           type="text" 
           required="true" 
           placeholder=' E-mail' 
-          register={register} 
+          register={register}
+          isValid={validateEmail(wEmail)}
           />          
-          {errors.eMail && <span>Preencha seu email</span>}
+          {errors.email && <span>Preencha seu email</span>}
         </div>
         <div className='flex justify-center'>          
           <Input  
@@ -42,7 +56,9 @@ export function RegisterForm ({handleSubmitDad}: IRegisterFormProps) {
           name="password" 
           required="true" 
           placeholder=' Senha'
-          register={register}/>
+          register={register} 
+          isValid={validatePassword(wPassword)}         
+          />          
           {errors.password && <span>Preencha sua senha</span>}
         </div>
         <div className='flex justify-center'>          
@@ -50,7 +66,10 @@ export function RegisterForm ({handleSubmitDad}: IRegisterFormProps) {
           name="confirmPassword" 
           required="true" 
           placeholder=' Confirmar Senha' 
-          register={register}  />
+          register={register}
+          isValid={validateConfirmPassword(wPassword,wConfirmPassword)}  
+          
+          />
           {errors.confirmPassword && <span>Confirme sua senha</span>}
         </div>
           <div className='flex justify-center'>
@@ -62,7 +81,7 @@ export function RegisterForm ({handleSubmitDad}: IRegisterFormProps) {
           <a className='cursor-pointer text-blueLink'>Termos de uso</a> e  
           <a className='cursor-pointer text-blueLink'> Política de Privacidade</a> 
           </p>
-        </div>                  
+        </div>                        
       </form>
       <div className="flex justify-center items-center">
       <hr className='border rounded-sm border-black w-[27vw] sm:w-[30vw] '/>
