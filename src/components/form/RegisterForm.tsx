@@ -25,6 +25,7 @@ export function RegisterForm ({handleSubmitDad,validateEmail,validatePassword,va
     }
   })   
   const [wName,wEmail,wPassword,wConfirmPassword] = watch(["name","email","password","confirmPassword"])
+  
   return (    
     <div className='bg-greyForm flex justify-center items-center flex-col'>
       <h1 className='text-2xl'>Create account</h1>
