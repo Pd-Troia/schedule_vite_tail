@@ -6,8 +6,9 @@ export interface IRegisterProps {
 }
 
 export function Register (props: IRegisterProps) {
-  const RegisterMember:SubmitHandler<IRegisterProps>  = (data) => {
-      console.log(data)
+  const RegisterMember = (data:object) => {
+    console.log("enviando dados ao servidor")  
+    console.log(data)
   }
   const validateName = (field:string) =>{
     const regex = "^(?![ ])(?!.*[ ]{2})((?:e|da|do|das|dos|de|d'|D'|la|las|el|los)\s*?|(?:[A-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð'][^\s]*\s*?)(?!.*[ ]$))+$"

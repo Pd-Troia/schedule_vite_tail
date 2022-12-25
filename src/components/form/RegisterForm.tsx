@@ -1,6 +1,8 @@
 import {useState} from 'react';
 import { useForm, SubmitHandler} from 'react-hook-form';
+import { ConfirmMenu } from './ConfirmMenu';
 import { Input } from './Input';
+import { PolicyFieldText } from './PoliticyFieldText';
 export interface IRegisterFormProps {  
   handleSubmitDad : SubmitHandler<IRegisterFormProps>
   name?: string
@@ -23,20 +25,34 @@ export function RegisterForm ({handleSubmitDad,validateEmail,validatePassword,va
       password: "",
       confirmPassword: ""
     }
-  })   
+  }) 
+  // validate fields  
   const [wName,wEmail,wPassword,wConfirmPassword] = watch(["name","email","password","confirmPassword"])
+  const isEmailValid:boolean = validateEmail(wEmail)
+  const isPasswordValid:boolean = validatePassword(wPassword)
+  const isConfirmPasswordValid:boolean = validateConfirmPassword(wPassword,wConfirmPassword)
+  const isNameValid:boolean = validateName(wName)
   
+  // submit area
+  const [submitData,setSubmitData] = useState<object>({})
+  const [showConfirmMenu,setShowConfirmMenu] = useState<boolean>(false)
+  const openConfirmMenu:SubmitHandler<IRegisterFormProps>  = (data) => {    
+    if(isConfirmPasswordValid && isEmailValid && isPasswordValid && isNameValid ){
+      setShowConfirmMenu(true)
+      setSubmitData(data)
+    }
+  }
   return (    
-    <div className='bg-greyForm flex justify-center items-center flex-col'>
+    <div className='bg-greyForm flex justify-center items-center flex-col relative'>
       <h1 className='text-2xl'>Create account</h1>
-      <form onSubmit={handleSubmit(handleSubmitDad)}>
+      <form onSubmit={handleSubmit(openConfirmMenu)}>
         <div className='flex justify-center'>          
            <Input name="name" 
            type="text"
            required='true' 
            placeholder="Nome Completo"
            register={register}
-           isValid={validateName(wName)}
+           isValid={isNameValid}
            />         
           {errors.name && <span>Preencha seu nome</span>}
         </div>
@@ -47,7 +63,7 @@ export function RegisterForm ({handleSubmitDad,validateEmail,validatePassword,va
           required="true" 
           placeholder=' E-mail' 
           register={register}
-          isValid={validateEmail(wEmail)}
+          isValid={isEmailValid}
           />          
           {errors.email && <span>Preencha seu email</span>}
         </div>
@@ -58,7 +74,7 @@ export function RegisterForm ({handleSubmitDad,validateEmail,validatePassword,va
           required="true" 
           placeholder=' Senha'
           register={register} 
-          isValid={validatePassword(wPassword)}         
+          isValid={isPasswordValid}         
           />          
           {errors.password && <span>Preencha sua senha</span>}
         </div>
@@ -68,7 +84,7 @@ export function RegisterForm ({handleSubmitDad,validateEmail,validatePassword,va
           required="true" 
           placeholder=' Confirmar Senha' 
           register={register}
-          isValid={validateConfirmPassword(wPassword,wConfirmPassword)}  
+          isValid={isConfirmPasswordValid}  
           
           />
           {errors.confirmPassword && <span>Confirme sua senha</span>}
@@ -77,17 +93,17 @@ export function RegisterForm ({handleSubmitDad,validateEmail,validatePassword,va
             <input className='rounded-3xl bg-red-600 text-2xl px-[16vw] sm:px-[26vw] dmm:px-[18vw] dmg:px-[19.5vw]
              lg:px-[28vw] py-2 text-white' value="Criar conta" type="submit" />
           </div>  
-        <div className="text-xs">
-          <p className='text-center'>Ao criar uma conta, você concorda com nossos <br />
-          <a className='cursor-pointer text-blueLink'>Termos de uso</a> e  
-          <a className='cursor-pointer text-blueLink'> Política de Privacidade</a> 
-          </p>
-        </div>                        
+        <PolicyFieldText/>                       
       </form>
       <div className="flex justify-center items-center">
       <hr className='border rounded-sm border-black w-[27vw] sm:w-[30vw] '/>
       <p className='mx-2'>Ou</p>
       <hr className='border rounded-sm border-black w-[27vw] sm:w-[30vw]'/>
+      {showConfirmMenu && (
+        <div className='absolute top-1/2 '>
+          <ConfirmMenu stateManager={setShowConfirmMenu} handleConfirm={handleSubmitDad} data={submitData}/>
+        </div>
+      )}
       </div>    
     </div>
   );
