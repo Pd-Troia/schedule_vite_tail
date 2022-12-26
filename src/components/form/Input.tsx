@@ -15,7 +15,7 @@ export function Input ({name,placeholder,required,register,type,isValid}: IInput
   const validBorder = "border-2 border-greenSucess"
   const notValidBorder = "border-2 border-redFail"
   return (
-    <div className='my-[2vw]' >
+    <div className='my-3 mx-7' >
         <div className='relative'>  
           <input 
           className={`bg-input w-[66vw] rounded-md placeholder-formPlaceHolder relative ${isValid ? validBorder : notValidBorder}`}      

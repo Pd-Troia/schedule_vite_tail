@@ -24,10 +24,10 @@ export function ConfirmMenu ({stateManager,handleConfirm, data}: IConfirmMenuPro
             <PolicyFieldText/>
         </div>
         <div className='flex font-bold text-input'>
-            <button onClick={buttonCancel} className='bg-redFail text-xl w-full flex rounded-bl px-7 py-3'>
+            <button onClick={buttonCancel} className='bg-redFail text-xl w-full flex justify-center rounded-bl px-7 py-3'>
                 Cancelar
             </button>
-            <button onClick={buttonConfirm} className='bg-greenSucess text-xl w-full flex rounded-br px-7 py-3 '>
+            <button onClick={buttonConfirm} className='bg-greenSucess justify-center text-xl w-full flex rounded-br px-7 py-3 '>
                 Confirmar
             </button>
         </div>

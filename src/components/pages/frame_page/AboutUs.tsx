@@ -5,7 +5,6 @@ export interface IAboutUsProps {
 }
 
 export function AboutUs (props: IAboutUsProps) {
-  console.log(typeof photoHyt)
   return (
     <>
     <div id="aboutus" className='flex flex-col items-center p-10 md:flex-row md:justify-around'>
