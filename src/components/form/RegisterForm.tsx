@@ -11,29 +11,23 @@ export interface IRegisterFormProps {
   password?: string
   email?: string  
 }
-export interface IRegisterFunctions{
-  validateName: Function
-  validatePassword: Function
-  validateConfirmPassword: Function
-  validateEmail: Function
-}
+
 export interface IRegisterRegex{
   regexName: RegExp
   regexEmail: RegExp
   regexPassword: RegExp
 }
-export function RegisterForm ({validateEmail,validatePassword,regexEmail,regexPassword,regexName
-  ,validateConfirmPassword,validateName}  : IRegisterRegex&IRegisterFormProps&IRegisterFunctions) {        
+export function RegisterForm ({regexPassword,regexName}: IRegisterRegex&IRegisterFormProps) {  
   // yup schema
   const schema = yup.object({
-    name: yup.string().required("Campo Obrigatorio").matches(regexName),
+    name: yup.string().required("Campo Obrigatorio").matches(regexName,"Nome inválido"),
     email: yup.string().email("Deve ser inserido um email válido").required("Campo Obrigatorio"),
     password: yup.string().required("Campo Obrigatorio").min(6,"Minimo de 6 caracteres")
     .matches(regexPassword,"Senha Fraca"),    
     confirmPassword: yup.string().required("Campo Obrigatorio").min(6,"Minimo de 6 caracteres")
+    .test("confirmPassword","Senhas diferentes",(value,context)=> context.parent.password===value)
     
-  })
-  
+  })  
   const {register,handleSubmit,formState:{errors}, watch} = useForm<IRegisterFormProps>({
     resolver: yupResolver(schema),
     defaultValues: {
@@ -43,23 +37,15 @@ export function RegisterForm ({validateEmail,validatePassword,regexEmail,regexPa
       confirmPassword: ""
     }
   })
-  
-  // validate fields  
-  const [wName,wEmail,wPassword,wConfirmPassword] = watch(["name","email","password","confirmPassword"])
-  const isEmailValid:boolean = validateEmail(wEmail)
-  const isPasswordValid:boolean = validatePassword(wPassword)
-  const isConfirmPasswordValid:boolean = validateConfirmPassword(wPassword,wConfirmPassword)
-  const isNameValid:boolean = validateName(wName)
-  
+  const[isSubmited, setIsSubmited] = useState(false)   
   // submit area
   const [submitData,setSubmitData] = useState<object>({})
   const [showConfirmMenu,setShowConfirmMenu] = useState<boolean>(false)
-  const openConfirmMenu:SubmitHandler<IRegisterFormProps>  = (data) => {    
-    if(isConfirmPasswordValid && isEmailValid && isPasswordValid && isNameValid ){
-      setShowConfirmMenu(true)
-      setSubmitData(data)
-    }
-  }
+  const openConfirmMenu:SubmitHandler<IRegisterFormProps>  = (data) => {       
+    setShowConfirmMenu(true)
+    setSubmitData(data)      
+  }   
+  
   return (    
     <div className='bg-greyForm flex justify-center items-center flex-col relative rounded-md'>
       <div className={showConfirmMenu ? "blur-sm" : ""}>
@@ -71,9 +57,10 @@ export function RegisterForm ({validateEmail,validatePassword,regexEmail,regexPa
             required='true' 
             placeholder="Nome Completo"
             register={register}
-            isValid={isNameValid}
+            
+            error={errors.name}
             />         
-            {errors.name && <span>Preencha seu nome</span>}
+            {errors.name && <span>{errors.name.message}</span>}
           </div>
           <div className='flex justify-center'>          
             <Input  
@@ -81,10 +68,10 @@ export function RegisterForm ({validateEmail,validatePassword,regexEmail,regexPa
             type="text" 
             required="true" 
             placeholder=' E-mail' 
-            register={register}
-            isValid={isEmailValid}
+            register={register}           
+            error={errors.email}                       
             />          
-            {errors.email && <span>Preencha seu email</span>}
+            {errors.email && <span>{errors.email.message}</span>}
           </div>
           <div className='flex justify-center'>          
             <Input  
@@ -92,19 +79,19 @@ export function RegisterForm ({validateEmail,validatePassword,regexEmail,regexPa
             name="password" 
             required="true" 
             placeholder=' Senha'
-            register={register} 
-            isValid={isPasswordValid}         
-            />          
-            {errors.password && <span>Preencha sua senha</span>}
+            register={register}
+            
+            error={errors.password} 
+            />            
+            {errors.password && <span>{errors.password.message}</span>}
           </div>
           <div className='flex justify-center'>          
             <Input type="password"  
             name="confirmPassword" 
             required="true" 
             placeholder=' Confirmar Senha' 
-            register={register}
-            isValid={isConfirmPasswordValid}  
-            
+            register={register}            
+            error={errors.confirmPassword}
             />
             {errors.confirmPassword && <span>Confirme sua senha</span>}
           </div>

@@ -19,31 +19,16 @@ export function Register (props: IRegisterProps) {
   const regexName = new RegExp("^(?![ ])(?!.*[ ]{2})((?:e|da|do|das|dos|de|d'|D'|la|las|el|los)\s*?|(?:[A-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð'][^\s]*\s*?)(?!.*[ ]$))+$")
   const regexEmail = new RegExp("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$")
   const regexPassword = new RegExp("^(?=.*[A-Z])(?=.*[!#@$%&])(?=.*[0-9])(?=.*[a-z]).{6,15}$")
-  const validateName = (field:string) =>{   
-    return field.match(regexName) ? true : false
-  }
-  const validateEmail = (field:string) =>{    
-    return field.match(regexEmail) ? true : false
-  }
-  const validatePassword = (field:string) =>{
-    return field.match(regexPassword) ? true : false
-  }
-  const validateConfirmPassword = (field1:string,field2:string) =>{
-    return field1 === field2 && validatePassword(field1) ? true : false 
-  }
+  
   // validators
   return (
     
     <div className='bg-greybg flex justify-center items-center w-full h-full p-32'>
       <RegisterContext.Provider value={registerMember}>
-        <RegisterForm        
-        validateName={validateName}
-        validateEmail={validateEmail}
-        validatePassword={validatePassword} 
-        validateConfirmPassword={validateConfirmPassword} 
+        <RegisterForm         
         regexPassword={regexPassword}
-        regexName={regexEmail}
-        regexEmail={regexName}
+        regexName={regexName}
+        regexEmail={regexEmail}
         />
       </RegisterContext.Provider >
     </div>
