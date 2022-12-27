@@ -1,16 +1,17 @@
+import { RegisterContext } from '../pages/Register';
 import * as React from 'react';
 import { PolicyFieldText } from './PoliticyFieldText';
 
 export interface IConfirmMenuProps {
-    stateManager: React.Dispatch<React.SetStateAction<boolean>>
-    handleConfirm: Function
+    stateManager: React.Dispatch<React.SetStateAction<boolean>>    
     data: object
 }
 
-export function ConfirmMenu ({stateManager,handleConfirm, data}: IConfirmMenuProps) {
+export function ConfirmMenu ({stateManager, data}: IConfirmMenuProps) {
+    const registerMember = React.useContext(RegisterContext)    
     const buttonConfirm = () =>{
         stateManager(false)
-        handleConfirm(data)
+        registerMember(data)
         return
     }
     const buttonCancel = () =>{

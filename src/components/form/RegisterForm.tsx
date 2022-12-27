@@ -3,8 +3,9 @@ import { useForm, SubmitHandler} from 'react-hook-form';
 import { ConfirmMenu } from './ConfirmMenu';
 import { Input } from './Input';
 import { PolicyFieldText } from './PoliticyFieldText';
-export interface IRegisterFormProps {  
-  handleSubmitDad : SubmitHandler<IRegisterFormProps>
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+export interface IRegisterFormProps {   
   name?: string
   confirmPassword?: string
   password?: string
@@ -16,16 +17,33 @@ export interface IRegisterFunctions{
   validateConfirmPassword: Function
   validateEmail: Function
 }
-
-export function RegisterForm ({handleSubmitDad,validateEmail,validatePassword,validateConfirmPassword,validateName}: IRegisterFormProps&IRegisterFunctions) {        
+export interface IRegisterRegex{
+  regexName: RegExp
+  regexEmail: RegExp
+  regexPassword: RegExp
+}
+export function RegisterForm ({validateEmail,validatePassword,regexEmail,regexPassword,regexName
+  ,validateConfirmPassword,validateName}  : IRegisterRegex&IRegisterFormProps&IRegisterFunctions) {        
+  // yup schema
+  const schema = yup.object({
+    name: yup.string().required("Campo Obrigatorio").matches(regexName),
+    email: yup.string().email("Deve ser inserido um email válido").required("Campo Obrigatorio"),
+    password: yup.string().required("Campo Obrigatorio").min(6,"Minimo de 6 caracteres")
+    .matches(regexPassword,"Senha Fraca"),    
+    confirmPassword: yup.string().required("Campo Obrigatorio").min(6,"Minimo de 6 caracteres")
+    
+  })
+  
   const {register,handleSubmit,formState:{errors}, watch} = useForm<IRegisterFormProps>({
+    resolver: yupResolver(schema),
     defaultValues: {
       name: "",
       email: "",
       password: "",
       confirmPassword: ""
     }
-  }) 
+  })
+  
   // validate fields  
   const [wName,wEmail,wPassword,wConfirmPassword] = watch(["name","email","password","confirmPassword"])
   const isEmailValid:boolean = validateEmail(wEmail)
@@ -105,7 +123,7 @@ export function RegisterForm ({handleSubmitDad,validateEmail,validatePassword,va
       
       {showConfirmMenu && (
         <div className='absolute top-2/5 '>
-          <ConfirmMenu stateManager={setShowConfirmMenu} handleConfirm={handleSubmitDad} data={submitData}/>
+          <ConfirmMenu stateManager={setShowConfirmMenu} data={submitData}/>
         </div>
       )}
    

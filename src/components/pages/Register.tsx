@@ -1,4 +1,4 @@
-import * as React from 'react';
+import {createContext} from 'react';
 import { RegisterForm } from '../form/RegisterForm';
 import { SubmitHandler } from 'react-hook-form/dist/types';
 import { useNavigate } from 'react-router-dom';
@@ -6,38 +6,46 @@ import { useNavigate } from 'react-router-dom';
 export interface IRegisterProps {
 }
 
+export const RegisterContext = createContext<Function>(()=>{console.log("maria")})
 export function Register (props: IRegisterProps) {
-  const navigate = useNavigate()
-  const RegisterMember = (data:object) => {
+  const navigate = useNavigate()  
+  const registerMember = (data:object) => {
     console.log("enviando dados ao servidor")  
     console.log(data) 
-    navigate("/") 
+    navigate("/")
+    return 
+  } 
+  // validators
+  const regexName = new RegExp("^(?![ ])(?!.*[ ]{2})((?:e|da|do|das|dos|de|d'|D'|la|las|el|los)\s*?|(?:[A-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð'][^\s]*\s*?)(?!.*[ ]$))+$")
+  const regexEmail = new RegExp("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$")
+  const regexPassword = new RegExp("^(?=.*[A-Z])(?=.*[!#@$%&])(?=.*[0-9])(?=.*[a-z]).{6,15}$")
+  const validateName = (field:string) =>{   
+    return field.match(regexName) ? true : false
   }
-  const validateName = (field:string) =>{
-    const regex = "^(?![ ])(?!.*[ ]{2})((?:e|da|do|das|dos|de|d'|D'|la|las|el|los)\s*?|(?:[A-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð'][^\s]*\s*?)(?!.*[ ]$))+$"
-    return field.match(regex) ? true : false
-  }
-  const validateEmail = (field:string) =>{
-    const regex = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
-    return field.match(regex) ? true : false
+  const validateEmail = (field:string) =>{    
+    return field.match(regexEmail) ? true : false
   }
   const validatePassword = (field:string) =>{
-    const regex = "^(?=.*[A-Z])(?=.*[!#@$%&])(?=.*[0-9])(?=.*[a-z]).{6,15}$"
-    return field.match(regex) ? true : false
+    return field.match(regexPassword) ? true : false
   }
   const validateConfirmPassword = (field1:string,field2:string) =>{
     return field1 === field2 && validatePassword(field1) ? true : false 
   }
+  // validators
   return (
     
     <div className='bg-greybg flex justify-center items-center w-full h-full p-32'>
-      <RegisterForm 
-      handleSubmitDad={RegisterMember}
-      validateName={validateName}
-      validateEmail={validateEmail}
-      validatePassword={validatePassword} 
-      validateConfirmPassword={validateConfirmPassword} 
-      />
+      <RegisterContext.Provider value={registerMember}>
+        <RegisterForm        
+        validateName={validateName}
+        validateEmail={validateEmail}
+        validatePassword={validatePassword} 
+        validateConfirmPassword={validateConfirmPassword} 
+        regexPassword={regexPassword}
+        regexName={regexEmail}
+        regexEmail={regexName}
+        />
+      </RegisterContext.Provider >
     </div>
   );
 }
