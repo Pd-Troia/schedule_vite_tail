@@ -5,6 +5,9 @@ import { Input } from './Input';
 import { PolicyFieldText } from './PoliticyFieldText';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import {FcGoogle} from 'react-icons/fc'
+import {BsFacebook} from 'react-icons/bs';
+import { TfiApple } from 'react-icons/tfi';
 export interface IRegisterFormProps {   
   name?: string
   confirmPassword?: string
@@ -37,7 +40,11 @@ export function RegisterForm ({regexPassword,regexName}: IRegisterRegex&IRegiste
       confirmPassword: ""
     }
   })
-  const[isSubmited, setIsSubmited] = useState(false)   
+  // first click on register button
+  const firstAttempt = ()=>{    
+    setIsFirstAttempt(false)
+  }  
+  const[isFirstAttempt, setIsFirstAttempt] = useState(true)  
   // submit area
   const [submitData,setSubmitData] = useState<object>({})
   const [showConfirmMenu,setShowConfirmMenu] = useState<boolean>(false)
@@ -57,10 +64,10 @@ export function RegisterForm ({regexPassword,regexName}: IRegisterRegex&IRegiste
             required='true' 
             placeholder="Nome Completo"
             register={register}
-            
+            isFirstAttempt={isFirstAttempt}
             error={errors.name}
             />         
-            {errors.name && <span>{errors.name.message}</span>}
+            
           </div>
           <div className='flex justify-center'>          
             <Input  
@@ -68,10 +75,11 @@ export function RegisterForm ({regexPassword,regexName}: IRegisterRegex&IRegiste
             type="text" 
             required="true" 
             placeholder=' E-mail' 
-            register={register}           
+            register={register} 
+            isFirstAttempt={isFirstAttempt}          
             error={errors.email}                       
             />          
-            {errors.email && <span>{errors.email.message}</span>}
+            
           </div>
           <div className='flex justify-center'>          
             <Input  
@@ -80,10 +88,10 @@ export function RegisterForm ({regexPassword,regexName}: IRegisterRegex&IRegiste
             required="true" 
             placeholder=' Senha'
             register={register}
-            
+            isFirstAttempt={isFirstAttempt}
             error={errors.password} 
             />            
-            {errors.password && <span>{errors.password.message}</span>}
+           
           </div>
           <div className='flex justify-center'>          
             <Input type="password"  
@@ -92,12 +100,13 @@ export function RegisterForm ({regexPassword,regexName}: IRegisterRegex&IRegiste
             placeholder=' Confirmar Senha' 
             register={register}            
             error={errors.confirmPassword}
+            isFirstAttempt={isFirstAttempt}
             />
-            {errors.confirmPassword && <span>Confirme sua senha</span>}
+            
           </div>
             <div className='flex justify-center'>
               <input className='rounded-3xl bg-red-600 text-2xl px-[16vw] sm:px-[26vw] dmm:px-[18vw] dmg:px-[19.5vw]
-              lg:px-[28vw] py-2 text-white' value="Criar conta" type="submit" />
+              lg:px-[28vw] py-2 text-white' value="Criar conta" type="submit" onClick={firstAttempt} />
             </div>  
           <PolicyFieldText/>                       
         </form>
@@ -106,14 +115,24 @@ export function RegisterForm ({regexPassword,regexName}: IRegisterRegex&IRegiste
           <p className='mx-2'>Ou</p>
           <hr className='border rounded-sm border-black w-[27vw] sm:w-[30vw]'/>      
         </div>
-      </div> 
-      
+        <div className='flex justify-center items-center'>
+          <div className='rounded-l-lg bg-brownStrong'>
+            <span className='text-[5vw]'><FcGoogle/></span>
+          </div>
+          <div>
+            <span className='text-[5vw]'><BsFacebook/></span>
+          </div>
+          <div>
+            <span className='text-[5vw]'><TfiApple/></span>
+          </div>
+        </div>
+      </div>       
       {showConfirmMenu && (
         <div className='absolute top-2/5 '>
           <ConfirmMenu stateManager={setShowConfirmMenu} data={submitData}/>
         </div>
       )}
-   
+
     </div>
   );
 }

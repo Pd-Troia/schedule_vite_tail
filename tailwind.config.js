@@ -15,6 +15,7 @@ module.exports = {
         formPlaceHolder: "#596475",
         greenSucess: "#5DB53F",
         redFail: "#B31515",
+        brownStrong: "230C0F",
       },
       screens:{
         "dmp": "320px",
