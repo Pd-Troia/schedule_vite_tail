@@ -13,15 +13,16 @@ export interface IInputProps {
 }
 
 export function Input ({name,placeholder,required,isFirstAttempt,register,type,error}: IInputProps) {   
-  const validBorder = "border-2 border-greenSucess"
-  const notValidBorder = "border-2 border-redFail"  
+  const validBorder = "border border-greenSucess"
+  const notValidBorder = "border border-redFail" 
+  const normalBorder = "border border-lightBlue" 
   const sucessFieldIcon = <span className="text-greenSucess"><MdOutlineVerified/></span>
   const failFieldIcon = <span className="text-redFail"><MdOutlineErrorOutline/></span>  
   return (
     <div className='my-3 mx-7' >
         <div className='relative'>  
           <input 
-          className={`bg-input w-[66vw] rounded-md placeholder-formPlaceHolder relative ${!isFirstAttempt && (!error ? validBorder : notValidBorder)}`}  
+          className={`bg-input w-[66vw] py-2 pl-3 rounded-md  placeholder:text-lightBlue relative ${!isFirstAttempt ? (!error ? validBorder : notValidBorder) : normalBorder }`}  
           {...register(name, {required:required})}          
           placeholder={placeholder}
           type={type}        

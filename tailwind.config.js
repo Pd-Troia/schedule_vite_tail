@@ -7,15 +7,15 @@ module.exports = {
       },
       colors:{
         greybg: "#EEF2F1" , 
-        "yellow-bananna": "#E2C044",
+        "yellow-bananna": "#E7D702",
         greyFooter: "#DEDEDE",
         greyForm: "#D3CFC6",
         input: "#ECEAE2",
         blueLink: "#0B07BC",
-        formPlaceHolder: "#596475",
+        lightBlue: "#596475",
         greenSucess: "#5DB53F",
         redFail: "#B31515",
-        brownStrong: "230C0F",
+        brownStrong: "#230C0F",        
       },
       screens:{
         "dmp": "320px",

@@ -5,9 +5,10 @@ import { Input } from './Input';
 import { PolicyFieldText } from './PoliticyFieldText';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import {FcGoogle} from 'react-icons/fc'
-import {BsFacebook} from 'react-icons/bs';
-import { TfiApple } from 'react-icons/tfi';
+import { LinkRegisterSocial } from './LinkRegisterSocial';
+import { Link } from 'react-router-dom';
+import { BackButton } from '../layout/BackButton';
+import PasswordStrengthBar from 'react-password-strength-bar';
 export interface IRegisterFormProps {   
   name?: string
   confirmPassword?: string
@@ -26,7 +27,7 @@ export function RegisterForm ({regexPassword,regexName}: IRegisterRegex&IRegiste
     name: yup.string().required("Campo Obrigatorio").matches(regexName,"Nome inválido"),
     email: yup.string().email("Deve ser inserido um email válido").required("Campo Obrigatorio"),
     password: yup.string().required("Campo Obrigatorio").min(6,"Minimo de 6 caracteres")
-    .matches(regexPassword,"Senha Fraca"),    
+    .matches(regexPassword,"Sua senha deve conter uma letra minúscula, letra minúscula, caracteres especiais(!#@$%&) e um número "),    
     confirmPassword: yup.string().required("Campo Obrigatorio").min(6,"Minimo de 6 caracteres")
     .test("confirmPassword","Senhas diferentes",(value,context)=> context.parent.password===value)
     
@@ -52,17 +53,25 @@ export function RegisterForm ({regexPassword,regexName}: IRegisterRegex&IRegiste
     setShowConfirmMenu(true)
     setSubmitData(data)      
   }   
+  // watches
+  const wPassword = watch("password")
+  const [renderCount,setRenderCount] = useState<number>(0) 
+  
   
   return (    
     <div className='bg-greyForm flex justify-center items-center flex-col relative rounded-md'>
       <div className={showConfirmMenu ? "blur-sm" : ""}>
-        <h1 className='text-2xl text-center'>Create account</h1>
-        <form onSubmit={handleSubmit(openConfirmMenu)}>
+        <div className='relative'>
+          <h1 className='text-2xl text-center my-2 font-medium'>Create account</h1>
+          <div className='absolute left-3 top-1'><BackButton/></div>
+        </div>
+        <form onSubmit={handleSubmit(openConfirmMenu)}>          
+          {console.log("a")}
           <div className='flex justify-center'>          
             <Input name="name" 
             type="text"
             required='true' 
-            placeholder="Nome Completo"
+            placeholder="Nome"
             register={register}
             isFirstAttempt={isFirstAttempt}
             error={errors.name}
@@ -74,30 +83,32 @@ export function RegisterForm ({regexPassword,regexName}: IRegisterRegex&IRegiste
             name="email" 
             type="text" 
             required="true" 
-            placeholder=' E-mail' 
+            placeholder='E-mail' 
             register={register} 
             isFirstAttempt={isFirstAttempt}          
             error={errors.email}                       
             />          
             
           </div>
-          <div className='flex justify-center'>          
+          <div className='flex items-center flex-col'>          
             <Input  
             type="password" 
             name="password" 
             required="true" 
-            placeholder=' Senha'
+            placeholder='Senha'
             register={register}
             isFirstAttempt={isFirstAttempt}
             error={errors.password} 
-            />            
-           
+            />                        
+            <div className='w-[66vw]'>
+              <PasswordStrengthBar password={wPassword}/>
+             </div>
           </div>
           <div className='flex justify-center'>          
             <Input type="password"  
             name="confirmPassword" 
             required="true" 
-            placeholder=' Confirmar Senha' 
+            placeholder='Confirmar Senha' 
             register={register}            
             error={errors.confirmPassword}
             isFirstAttempt={isFirstAttempt}
@@ -115,17 +126,14 @@ export function RegisterForm ({regexPassword,regexName}: IRegisterRegex&IRegiste
           <p className='mx-2'>Ou</p>
           <hr className='border rounded-sm border-black w-[27vw] sm:w-[30vw]'/>      
         </div>
-        <div className='flex justify-center items-center'>
-          <div className='rounded-l-lg bg-brownStrong'>
-            <span className='text-[5vw]'><FcGoogle/></span>
-          </div>
-          <div>
-            <span className='text-[5vw]'><BsFacebook/></span>
-          </div>
-          <div>
-            <span className='text-[5vw]'><TfiApple/></span>
-          </div>
+        <div className='my-2'>
+          <LinkRegisterSocial/>
         </div>
+        <div className='text-center text-lg font-semibold'>
+          <p className='mb-2'>Já tem uma conta ?</p>
+          <Link to="/"><span className='cursor:pointer text-blueLink '>Faça login clicando aqui</span></Link>
+        </div>
+              
       </div>       
       {showConfirmMenu && (
         <div className='absolute top-2/5 '>
