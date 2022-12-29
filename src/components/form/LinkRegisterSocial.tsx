@@ -7,16 +7,22 @@ export interface ILinkRegisterSocialProps {
 
 export function LinkRegisterSocial (props: ILinkRegisterSocialProps) {
   return (
-    <div className='flex justify-center items-center '>
-          <div className='rounded-l-full px-[8vw] py-1 bg-brownStrong  '>
-            <span className='text-[5vw]'><FcGoogle/></span>
-          </div> 
-          <div className=' bg-brownStrong px-[8vw] py-1 '>
-            <span className='text-[5vw] '><BsFacebook/></span>
+      <div className="flex items-center justify-center ">
+          <div className="rounded-l-full bg-brownStrong px-[8vw] py-1 lg:px-[7vw] ">
+              <span className="text-[5vw] lg:text-[4vw]">
+                  <FcGoogle />
+              </span>
           </div>
-          <div className=' rounded-r-full py-1 px-[8vw] bg-brownStrong  '>
-            <span className='text-[5vw] text-white'><TfiApple/></span>
+          <div className=" bg-brownStrong px-[8vw] py-1 lg:px-[7vw] ">
+              <span className="text-[5vw] lg:text-[4vw] ">
+                  <BsFacebook />
+              </span>
           </div>
-    </div>      
-  );
+          <div className=" rounded-r-full bg-brownStrong py-1 px-[8vw] lg:px-[7vw]  ">
+              <span className="text-[5vw] text-white lg:text-[4vw]">
+                  <TfiApple />
+              </span>
+          </div>
+      </div>
+  )
 }

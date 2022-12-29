@@ -1,12 +1,11 @@
 import {createContext} from 'react';
 import { RegisterForm } from '../form/RegisterForm';
-import { SubmitHandler } from 'react-hook-form/dist/types';
 import { useNavigate } from 'react-router-dom';
 
 export interface IRegisterProps {
 }
 
-export const RegisterContext = createContext<Function>(()=>{console.log("maria")})
+export const RegisterContext = createContext<Function>(()=>{})
 export function Register (props: IRegisterProps) {
   const navigate = useNavigate()  
   const registerMember = (data:object) => {
@@ -22,15 +21,14 @@ export function Register (props: IRegisterProps) {
   
   // validators
   return (
-    
-    <div className='bg-greybg flex justify-center items-center w-full h-full p-32'>
-      <RegisterContext.Provider value={registerMember}>
-        <RegisterForm         
-        regexPassword={regexPassword}
-        regexName={regexName}
-        regexEmail={regexEmail}
-        />
-      </RegisterContext.Provider >
-    </div>
-  );
+      <div className="flex h-full w-full items-center justify-center bg-greybg p-32">
+          <RegisterContext.Provider value={registerMember}>
+              <RegisterForm
+                  regexPassword={regexPassword}
+                  regexName={regexName}
+                  regexEmail={regexEmail}
+              />
+          </RegisterContext.Provider>
+      </div>
+  )
 }
