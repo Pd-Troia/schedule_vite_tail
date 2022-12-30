@@ -22,7 +22,7 @@ export function Input ({name,placeholder,required,isFirstAttempt,register,type,e
     <div className='my-3 mx-7' >
         <div className='relative'>  
           <input 
-          className={`bg-input w-[66vw] py-2 pl-3 rounded-md  placeholder:text-lightBlue relative ${!isFirstAttempt ? (!error ? validBorder : notValidBorder) : normalBorder }`}  
+          className={`bg-input w-[66vw] lg:w-[53vw]  py-2 pl-3 rounded-md  placeholder:text-lightBlue relative ${!isFirstAttempt ? (!error ? validBorder : notValidBorder) : normalBorder }`}  
           {...register(name, {required:required})}          
           placeholder={placeholder}
           type={type}        

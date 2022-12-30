@@ -91,15 +91,13 @@ export function RegisterForm({
     return (
         <div className="relative flex flex-col items-center justify-center rounded-md bg-greyForm">
             <div className={showConfirmMenu ? 'blur-sm' : ''}>
-                <div className="flex dmm:block">
+                <div className="flex justify-center dmm:block">
                     <div className="dmm:absolute dmm:left-3 dmm:top-1 ">
                         <BackButton />
                     </div>
-                        <h1 className="my-2 text-center text-2xl font-medium dmm:my-7">
-                            Create account
-                        </h1>
-                    {/* "my-2 text-center text-2xl font-medium dmm:my-7 
-                    absolute left-3 top-1*/}
+                    <h1 className="my-2 text-center text-2xl font-medium dmm:my-7">
+                        Create account
+                    </h1>
                 </div>
                 <form onSubmit={handleSubmit(openConfirmMenu)}>
                     <div className="flex justify-center">
@@ -145,8 +143,9 @@ export function RegisterForm({
                             isFirstAttempt={isFirstAttempt}
                             error={errors.password}
                         />
-                        <div className="w-[66vw]">
+                        <div className="">
                             <PasswordStrengthBar
+                                className={'w-[66vw] lg:w-[53vw]'}
                                 password={wPassword}
                                 scoreWords={[
                                     'fraca',
@@ -171,10 +170,10 @@ export function RegisterForm({
                             isFirstAttempt={isFirstAttempt}
                         />
                     </div>
-                    <div className="flex justify-center">
+                    <div className="flex justify-center ">
                         <input
-                            className="cursor-pointer rounded-3xl bg-red-600 px-[16vw] py-2 text-2xl text-white dmm:px-[18vw]
-              dmg:px-[19.5vw] sm:px-[26vw] lg:px-[28vw]"
+                            className="cursor-pointer rounded-full bg-red-600 px-[16vw] py-3 text-2xl text-white dmm:px-[18vw] dmg:px-[18vw] sm:px-[22vw]
+              sm:text-3xl lg:px-[18vw] lg:text-4xl xl:px-[21vw]"
                             value="Criar conta"
                             type="submit"
                             onClick={firstAttempt}
