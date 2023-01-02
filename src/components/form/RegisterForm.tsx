@@ -81,13 +81,17 @@ export function RegisterForm({
     // submit area
     const [submitData, setSubmitData] = useState<object>({})
     const [showConfirmMenu, setShowConfirmMenu] = useState<boolean>(false)
+    //onSubmitFunction
     const openConfirmMenu: SubmitHandler<IRegisterFormProps> = (data) => {
         setShowConfirmMenu(true)
         setSubmitData(data)
     }
     // watches
     const wPassword = watch('password')
-
+    // css border
+    const inputCss =
+        'bg-input w-[66vw] lg:w-[53vw]  py-2 pl-3 rounded-md  placeholder:text-lightBlue relative'
+    const borderCss = 'border border-lightBlue'
     return (
         <div className="relative flex flex-col items-center justify-center rounded-md bg-greyForm">
             <div className={showConfirmMenu ? 'blur-sm' : ''}>
@@ -100,7 +104,7 @@ export function RegisterForm({
                     </h1>
                 </div>
                 <form onSubmit={handleSubmit(openConfirmMenu)}>
-                    <div className="flex justify-center">
+                    <div className="my-3 mx-7 flex justify-center">
                         <Input
                             name="firstName"
                             type="text"
@@ -109,9 +113,11 @@ export function RegisterForm({
                             register={register}
                             isFirstAttempt={isFirstAttempt}
                             error={errors.firstName}
+                            inputClass={inputCss}
+                            defaultBorderClass={borderCss}
                         />
                     </div>
-                    <div className="flex justify-center">
+                    <div className="my-3 mx-7 flex justify-center">
                         <Input
                             name="lastName"
                             type="text"
@@ -120,9 +126,11 @@ export function RegisterForm({
                             register={register}
                             isFirstAttempt={isFirstAttempt}
                             error={errors.lastName}
+                            inputClass={inputCss}
+                            defaultBorderClass={borderCss}
                         />
                     </div>
-                    <div className="flex justify-center">
+                    <div className="my-3 mx-7 flex justify-center">
                         <Input
                             name="email"
                             type="text"
@@ -131,9 +139,11 @@ export function RegisterForm({
                             register={register}
                             isFirstAttempt={isFirstAttempt}
                             error={errors.email}
+                            inputClass={inputCss}
+                            defaultBorderClass={borderCss}
                         />
                     </div>
-                    <div className="flex flex-col items-center">
+                    <div className="my-3 mx-7 flex flex-col items-center">
                         <Input
                             type="password"
                             name="password"
@@ -142,6 +152,8 @@ export function RegisterForm({
                             register={register}
                             isFirstAttempt={isFirstAttempt}
                             error={errors.password}
+                            inputClass={inputCss}
+                            defaultBorderClass={borderCss}
                         />
                         <div className="">
                             <PasswordStrengthBar
@@ -159,7 +171,7 @@ export function RegisterForm({
                             />
                         </div>
                     </div>
-                    <div className="flex justify-center">
+                    <div className="my-3 mx-7 flex justify-center">
                         <Input
                             type="password"
                             name="confirmPassword"
@@ -168,6 +180,8 @@ export function RegisterForm({
                             register={register}
                             error={errors.confirmPassword}
                             isFirstAttempt={isFirstAttempt}
+                            inputClass={inputCss}
+                            defaultBorderClass={borderCss}
                         />
                     </div>
                     <div className="flex justify-center ">

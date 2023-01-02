@@ -10,19 +10,21 @@ export interface IInputProps {
     type:string      
     error: FieldError|undefined   
     isFirstAttempt: boolean 
+    inputClass: string
+    defaultBorderClass: string    
 }
 
-export function Input ({name,placeholder,required,isFirstAttempt,register,type,error}: IInputProps) {   
+export function Input ({name,placeholder,required,isFirstAttempt,register,type,error,inputClass,defaultBorderClass}: IInputProps) {   
   const validBorder = "border border-greenSucess"
   const notValidBorder = "border border-redFail" 
   const normalBorder = "border border-lightBlue" 
   const sucessFieldIcon = <span className="text-greenSucess"><MdOutlineVerified/></span>
   const failFieldIcon = <span className="text-redFail"><MdOutlineErrorOutline/></span>  
   return (
-    <div className='my-3 mx-7' >
+    <div  >
         <div className='relative'>  
-          <input 
-          className={`bg-input w-[66vw] lg:w-[53vw]  py-2 pl-3 rounded-md  placeholder:text-lightBlue relative ${!isFirstAttempt ? (!error ? validBorder : notValidBorder) : normalBorder }`}  
+          <input inputClass
+          className={`${inputClass} ${!isFirstAttempt ? (!error ? validBorder : notValidBorder) : defaultBorderClass }`}  
           {...register(name, {required:required})}          
           placeholder={placeholder}
           type={type}        
