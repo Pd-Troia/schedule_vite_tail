@@ -5,8 +5,9 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { Input } from './Input'
 import { IoMdCloseCircle } from 'react-icons/io'
 import { homeContext } from '../pages/Home'
-import { AiOutlineMail, AiOutlineEyeInvisible } from 'react-icons/ai'
+import { AiOutlineMail } from 'react-icons/ai'
 import { BsFillKeyFill, BsKeyFill } from 'react-icons/bs'
+import { ButtonInputVisible } from './ButtonInputVisible'
 export interface ILoginFormProps {
     email?: string
     password?: string
@@ -14,12 +15,10 @@ export interface ILoginFormProps {
 
 
 export function LoginForm(props: ILoginFormProps) {
-    //showPassoword State
-    const [showPassoword, setShowPassword] = React.useState<
-        'password' | 'text'
-    >('password')
-    //First attempt
+    //states
+           
     const [isFirstAttempt, setIsFirstAttempt] = React.useState<boolean>(true)
+    const [showPassword, setShowPassword] = React.useState<boolean>(false)
     //schema
     const schema = yup.object({
         email: yup.string().email().required(),
@@ -68,33 +67,10 @@ export function LoginForm(props: ILoginFormProps) {
                     <span className={iconCss}>
                         <AiOutlineMail />
                     </span>
-                    <div className="relative">
-                        <Input
-                            name="email"
-                            required="true"
-                            placeholder="insira seu e-mail"
-                            isFirstAttempt={isFirstAttempt}
-                            register={register}
-                            type="text"
-                            error={errors.email}
-                            inputClass={inputCss}
-                            defaultBorderClass={borderCss}
-                        />
-                        <div className="absolute right-3 top-[0.65em]">
-                            <button className="text-4xl text-blackIcon">
-                                <AiOutlineEyeInvisible/>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div className="my-3 mx-7 flex items-center justify-center">
-                    <span className={iconCss}>
-                        <BsFillKeyFill />
-                    </span>
                     <Input
-                        name="password"
+                        name="email"
                         required="true"
-                        placeholder="insira sua Senha"
+                        placeholder="insira seu e-mail"
                         isFirstAttempt={isFirstAttempt}
                         register={register}
                         type="text"
@@ -102,6 +78,30 @@ export function LoginForm(props: ILoginFormProps) {
                         inputClass={inputCss}
                         defaultBorderClass={borderCss}
                     />
+                </div>
+                <div className="my-5 mx-7 flex items-center justify-center">
+                    <span className={iconCss}>
+                        <BsFillKeyFill />
+                    </span>
+                    <div className="relative">
+                        <Input
+                            name="password"
+                            required="true"
+                            placeholder="insira sua Senha"
+                            isFirstAttempt={isFirstAttempt}
+                            register={register}
+                            type={showPassword ? "text" : "password"}
+                            error={errors.email}
+                            inputClass={inputCss}
+                            defaultBorderClass={borderCss}
+                        />
+                        <div className="absolute right-3 top-[0.65em]">
+                            <ButtonInputVisible
+                                handleToggleShowPassword={setShowPassword}
+                                actualState={showPassword}
+                            />
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>
