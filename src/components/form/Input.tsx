@@ -17,17 +17,17 @@ export interface IInputProps {
 export function Input ({name,placeholder,required,isFirstAttempt,register,type,error,inputClass,defaultBorderClass}: IInputProps) {   
   const validBorder = "border border-greenSucess"
   const notValidBorder = "border border-redFail" 
-  const normalBorder = "border border-lightBlue" 
   const sucessFieldIcon = <span className="text-greenSucess"><MdOutlineVerified/></span>
   const failFieldIcon = <span className="text-redFail"><MdOutlineErrorOutline/></span>  
   return (
-    <div  >
+    <>
         <div className='relative'>  
           <input inputClass
           className={`${inputClass} ${!isFirstAttempt ? (!error ? validBorder : notValidBorder) : defaultBorderClass }`}  
           {...register(name, {required:required})}          
           placeholder={placeholder}
-          type={type}        
+          type={type}  
+          id={name}      
           />
           <div className="absolute right-2 top-1/4" >
           {!isFirstAttempt && (error ? failFieldIcon : sucessFieldIcon) }
@@ -38,7 +38,7 @@ export function Input ({name,placeholder,required,isFirstAttempt,register,type,e
               <p >* {error.message} * </p>
             </div>
           )}
-    </div>
+    </>
    
     
   );
