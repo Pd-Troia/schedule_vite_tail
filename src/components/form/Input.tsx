@@ -8,7 +8,7 @@ export interface IInputProps {
     required: string;
     register: Function;
     type:string      
-    error: FieldError|undefined   
+    error?: FieldError|undefined   
     isFirstAttempt: boolean 
     inputClass: string
     defaultBorderClass: string    
@@ -22,7 +22,7 @@ export function Input ({name,placeholder,required,isFirstAttempt,register,type,e
   return (
     <>
         <div className='relative'>  
-          <input inputClass
+          <input 
           className={`${inputClass} ${!isFirstAttempt ? (!error ? validBorder : notValidBorder) : defaultBorderClass }`}  
           {...register(name, {required:required})}          
           placeholder={placeholder}

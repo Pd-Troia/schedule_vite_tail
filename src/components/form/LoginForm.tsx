@@ -37,7 +37,8 @@ export function LoginForm(props: ILoginFormProps) {
         },
     })
     //onSubmit
-    const submit: SubmitHandler<ILoginFormProps> = (data) => {
+    const submit: SubmitHandler<ILoginFormProps> = (data) => {        
+        console.log(data)
         setIsFirstAttempt(false)
     }
     // close Menu
@@ -62,60 +63,73 @@ export function LoginForm(props: ILoginFormProps) {
                 <p className="text-3xl font-semibold">Bem-Vindo</p>
             </h1>
             <form onSubmit={handleSubmit(submit)}>
-                <div className="my-5 mx-7 flex items-center justify-center">
-                    <span className={iconCss}>
-                        <AiOutlineMail />
-                    </span>
-                    <div className="relative">
-                        <div className="absolute -top-7">
-                            <h1 className="font-semibold text-2xl">E-mail</h1>
-                        </div>
-                        <Input
-                            name="email"
-                            required="true"
-                            placeholder="insira seu e-mail"
-                            isFirstAttempt={isFirstAttempt}
-                            register={register}
-                            type="text"
-                            error={errors.email}
-                            inputClass={inputCss}
-                            defaultBorderClass={borderCss}
-                        />
-                    </div>
-                </div>
-                <div className="mx-7 mt-20 flex items-center justify-center">
-                    <span className={iconCss}>
-                        <BsFillKeyFill />
-                    </span>
-                    <div className="relative">
+                <div className="flex flex-col items-center justify-center">
+                    <div className="my-5 mx-7 flex items-center justify-center">
+                        <span className={iconCss}>
+                            <AiOutlineMail />
+                        </span>
                         <div className="relative">
                             <div className="absolute -top-7">
-                                <h1 className="font-semibold text-2xl">Senha</h1>
+                                <h1 className="text-2xl font-semibold">
+                                    E-mail
+                                </h1>
                             </div>
                             <Input
-                                name="password"
+                                name="email"
                                 required="true"
-                                placeholder="insira sua Senha"
+                                placeholder="insira seu e-mail"
                                 isFirstAttempt={isFirstAttempt}
                                 register={register}
-                                type={showPassword ? 'text' : 'password'}
-                                error={errors.email}
+                                type="text"
                                 inputClass={inputCss}
                                 defaultBorderClass={borderCss}
                             />
                         </div>
-                        <div className="absolute right-3 top-[0.65em]">
-                            <ButtonInputVisible
-                                handleToggleShowPassword={setShowPassword}
-                                actualState={showPassword}
-                            />
-                        </div>
-                    <div className="absolute -bottom-7 -left-10">
-                        <CheckBox name="Permanecer conectado" />
                     </div>
-                    </div>
+                    {errors.email && (
+                        <p className="text-redFail">
+                            * {errors.email.message} *
+                        </p>
+                    )}
                 </div>
-                <button> asdasd</button>
+                <div className="flex flex-col items-center justify-center">
+                    <div className="mx-7 mt-20 flex items-center justify-center">
+                        <span className={iconCss}>
+                            <BsFillKeyFill />
+                        </span>
+                        <div className="relative">
+                            <div className="relative">
+                                <div className="absolute -top-7">
+                                    <h1 className="text-2xl font-semibold">
+                                        Senha
+                                    </h1>
+                                </div>
+                                <Input
+                                    name="password"
+                                    required="true"
+                                    placeholder="insira sua Senha"
+                                    isFirstAttempt={isFirstAttempt}
+                                    register={register}
+                                    type={showPassword ? 'text' : 'password'}
+                                    inputClass={inputCss}
+                                    defaultBorderClass={borderCss}
+                                />
+                            </div>
+                            <div className="absolute right-3 top-[0.65em]">
+                                <ButtonInputVisible
+                                    handleToggleShowPassword={setShowPassword}
+                                    actualState={showPassword}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    {errors.password && (
+                        <p className="text-redFail">
+                            * {errors.password.message} *
+                        </p>
+                    )}                    
+                </div>
+                <button type="submit"> asdasd</button>
             </form>
         </div>
     )
