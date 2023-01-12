@@ -163,7 +163,7 @@ export function LoginForm(props: ILoginFormProps) {
                     </div>
                 </div>
                 <div className="flex items-center justify-center">
-                    <p className="mt-3 text-xl font-semibold">
+                    <p className="mt-3 dmp:text-sm dmm:text-md md:text-lg lg:text-xl font-semibold">
                         Ainda não tem uma conta ?
                         <Link to="/register">
                             <span className="font-bold text-blueLink ml-2">
