@@ -9,6 +9,7 @@ import { AiOutlineMail } from 'react-icons/ai'
 import { BsFillKeyFill, BsKeyFill } from 'react-icons/bs'
 import { ButtonInputVisible } from './ButtonInputVisible'
 import { CheckBox } from './CheckBox'
+import { Link } from 'react-router-dom'
 export interface ILoginFormProps {
     email?: string
     password?: string
@@ -37,7 +38,7 @@ export function LoginForm(props: ILoginFormProps) {
         },
     })
     //onSubmit
-    const submit: SubmitHandler<ILoginFormProps> = (data) => {        
+    const submit: SubmitHandler<ILoginFormProps> = (data) => {
         console.log(data)
         setIsFirstAttempt(false)
     }
@@ -115,11 +116,19 @@ export function LoginForm(props: ILoginFormProps) {
                                     defaultBorderClass={borderCss}
                                 />
                             </div>
-                            <div className="absolute right-3 top-[0.65em]">
+                            <div className="absolute right-7 top-[0.65em]">
                                 <ButtonInputVisible
                                     handleToggleShowPassword={setShowPassword}
                                     actualState={showPassword}
                                 />
+                            </div>
+                            <div className="absolute -left-11 top-24">
+                                <CheckBox label={"Permanecer conectado"}></CheckBox>
+                            </div>
+                            <div className='absolute right-3'>
+                                <Link to="/">
+                                    <p className='text-blueLink text-sm font-semibold'>Esqueceu a senha ?</p>
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -127,9 +136,11 @@ export function LoginForm(props: ILoginFormProps) {
                         <p className="text-redFail">
                             * {errors.password.message} *
                         </p>
-                    )}                    
+                    )}
                 </div>
-                <button type="submit"> asdasd</button>
+                <div className='flex justify-center mt-20 '>
+                    <button className="px-24 py-3 bg-black-90 rounded-lg text-2xl text-white">Log in</button>            
+                </div>
             </form>
         </div>
     )
