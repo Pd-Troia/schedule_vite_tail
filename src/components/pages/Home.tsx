@@ -11,7 +11,7 @@ export const homeContext = createContext<Dispatch<boolean>>(() =>
 )
 
 export function Home(props: IHomeProps) {
-    const [toggleLogin, setToggleLogin] = useState<boolean>(true)
+    const [toggleLogin, setToggleLogin] = useState<boolean>(false)
     return (
         <homeContext.Provider value={setToggleLogin}>
             <div className={'relative bg-greybg '}>

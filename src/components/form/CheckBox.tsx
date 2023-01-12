@@ -2,13 +2,23 @@ import * as React from 'react'
 
 export interface ICheckBoxProps {
     label: string
+    register: Function
+    name: string
+    required: boolean
 }
 
-export function CheckBox({ label }: ICheckBoxProps) {
+export function CheckBox({ label,register,name,required }: ICheckBoxProps) {
     return (
-        <div className='flex justify-center items-center'>
-            <input className='w-4 h-4' type="checkbox" id={label} />
-            <label className='font-semibold ml-1' htmlFor={label}>{label}</label>
+        <div className="flex items-center justify-center">
+            <input
+                {...register(name, { required: required })}
+                className="h-4 w-4"
+                type="checkbox"
+                id={name}
+            />
+            <label className="ml-1 font-semibold" htmlFor={label}>
+                {label}
+            </label>
         </div>
     )
 }

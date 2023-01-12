@@ -10,9 +10,11 @@ import { BsFillKeyFill, BsKeyFill } from 'react-icons/bs'
 import { ButtonInputVisible } from './ButtonInputVisible'
 import { CheckBox } from './CheckBox'
 import { Link } from 'react-router-dom'
+import { LinkLoginSocial } from './LinkLoginSocial'
 export interface ILoginFormProps {
     email?: string
     password?: string
+    stayConectected?: boolean
 }
 
 export function LoginForm(props: ILoginFormProps) {
@@ -122,24 +124,53 @@ export function LoginForm(props: ILoginFormProps) {
                                     actualState={showPassword}
                                 />
                             </div>
-                            <div className="absolute -left-11 top-24">
-                                <CheckBox label={"Permanecer conectado"}></CheckBox>
+                            <div className="absolute -left-11 -bottom-9">
+                                <CheckBox
+                                    label={'Permanecer conectado'}
+                                    register = {register}
+                                    name = "stayConectected"
+                                    required = {true}
+                                ></CheckBox>
                             </div>
-                            <div className='absolute right-3'>
+                            <div className="absolute right-3">
                                 <Link to="/">
-                                    <p className='text-blueLink text-sm font-semibold'>Esqueceu a senha ?</p>
+                                    <p className="text-sm font-semibold text-blueLink">
+                                        Esqueceu a senha ?
+                                    </p>
                                 </Link>
                             </div>
                         </div>
                     </div>
                     {errors.password && (
-                        <p className="text-redFail">
-                            * {errors.password.message} *
-                        </p>
+                        <div className="mt-10">
+                            <p className="text-redFail">
+                                * {errors.password.message} *
+                            </p>
+                        </div>
                     )}
                 </div>
-                <div className='flex justify-center mt-20 '>
-                    <button className="px-24 py-3 bg-black-90 rounded-lg text-2xl text-white">Log in</button>            
+                <div className="mt-12 flex justify-center ">
+                    <button className="rounded-lg bg-black-90 px-24 py-3 text-2xl text-white">
+                        Log in
+                    </button>
+                </div>
+                <div className="flex items-center justify-center flex-col">
+                    <div>
+                        <p> Ou use uma de nossas redes sociais</p>
+                    </div>
+                    <div>
+                        <LinkLoginSocial />
+                    </div>
+                </div>
+                <div className="flex items-center justify-center">
+                    <p className="mt-3 text-xl font-semibold">
+                        Ainda não tem uma conta ?
+                        <Link to="/register">
+                            <span className="font-bold text-blueLink ml-2">
+                                Se registre aqui.
+                            </span>
+                        </Link>
+                    </p>
                 </div>
             </form>
         </div>
