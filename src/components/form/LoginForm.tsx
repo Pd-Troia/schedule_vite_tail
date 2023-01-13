@@ -24,8 +24,8 @@ export function LoginForm(props: ILoginFormProps) {
     const [showPassword, setShowPassword] = React.useState<boolean>(false)
     //schema
     const schema = yup.object({
-        email: yup.string().email().required(),
-        password: yup.string().required(),
+        email: yup.string().email("Insira um email válido").required("Campo vazio"),
+        password: yup.string().required("Campo vazio"),
     })
     //useForm
     const {
@@ -89,10 +89,12 @@ export function LoginForm(props: ILoginFormProps) {
                             />
                         </div>
                     </div>
-                    {errors.email && (
+                    {errors.email ? (
                         <p className="text-redFail">
                             * {errors.email.message} *
                         </p>
+                    ) : (
+                        <p className="text-redFail">&nbsp;</p>
                     )}
                 </div>
                 <div className="flex flex-col items-center justify-center">
@@ -127,9 +129,9 @@ export function LoginForm(props: ILoginFormProps) {
                             <div className="absolute -left-11 -bottom-9">
                                 <CheckBox
                                     label={'Permanecer conectado'}
-                                    register = {register}
-                                    name = "stayConectected"
-                                    required = {true}
+                                    register={register}
+                                    name="stayConectected"
+                                    required={true}
                                 ></CheckBox>
                             </div>
                             <div className="absolute right-3">
@@ -141,20 +143,22 @@ export function LoginForm(props: ILoginFormProps) {
                             </div>
                         </div>
                     </div>
-                    {errors.password && (
+                    {errors.password ? (
                         <div className="mt-10">
                             <p className="text-redFail">
                                 * {errors.password.message} *
                             </p>
                         </div>
+                    ) : (
+                        <div className="mt-10">&nbsp;</div>
                     )}
                 </div>
-                <div className="mt-12 flex justify-center ">
+                <div className="mt-6 flex justify-center ">
                     <button className="rounded-lg bg-black-90 px-24 py-3 text-2xl text-white">
                         Log in
                     </button>
                 </div>
-                <div className="flex items-center justify-center flex-col">
+                <div className="flex flex-col items-center justify-center">
                     <div>
                         <p> Ou use uma de nossas redes sociais</p>
                     </div>
@@ -163,10 +167,10 @@ export function LoginForm(props: ILoginFormProps) {
                     </div>
                 </div>
                 <div className="flex items-center justify-center">
-                    <p className="mt-3 dmp:text-sm dmm:text-md md:text-lg lg:text-xl font-semibold">
+                    <p className="dmm:text-md mt-3 font-semibold dmp:text-sm md:text-lg lg:text-xl">
                         Ainda não tem uma conta ?
                         <Link to="/register">
-                            <span className="font-bold text-blueLink ml-2">
+                            <span className="ml-2 font-bold text-blueLink">
                                 Se registre aqui.
                             </span>
                         </Link>
