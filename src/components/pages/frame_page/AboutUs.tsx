@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { ProfileCard } from '../../layout/ProfileCard';
 import photoHyt from '../../../images/foto.png';
+import newPhotoHyt from '../../../images/foto_1.png';
+import { NewProfileCard } from '../../layout/NewProfileCard';
 export interface IAboutUsProps {
 }
 
@@ -9,20 +11,27 @@ export function AboutUs (props: IAboutUsProps) {
     <>
     <div id="aboutus" className='flex flex-col items-center p-10 md:flex-row md:justify-around'>
       <div className="my-14 md:my-0">
-        <ProfileCard 
+        <NewProfileCard
+        photo={newPhotoHyt}
+        github="https://github.com/Pd-Troia"
+        linkedin='https://www.linkedin.com/in/hytalo-benaventana' 
+        colorTheme='cian'
+        labelName='Hytálo Benaventana' 
+        />
+        {/* <ProfileCard 
         name="Hytálo Benaventana"
         photo={photoHyt}
         linkGit="https://github.com/Pd-Troia" 
         linkLinkedin='https://www.linkedin.com/in/hytalo-benaventana' 
-        />
+        /> */}
         </div>
       <div>
-        <ProfileCard 
+        {/* <ProfileCard 
         name="Matheus Coelho"
         photo={photoHyt}
         linkGit="" 
         linkLinkedin='' 
-        /> {/* por enquanto ta a minha foto, dps so importar e bota a sua  */}      
+        />      */}
       </div>         
     </div>
     <div>

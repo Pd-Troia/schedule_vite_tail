@@ -20,6 +20,8 @@ module.exports = {
                 whiteIcon: '#ECEAE2',
                 blackIcon: '#1C1B1F',
                 'black-90': '#0C0101',
+                cian: '#0077B5',
+                yellowBeige: '#CECE25',
             },
             screens: {
                 dmp: '320px',
