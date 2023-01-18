@@ -14,7 +14,7 @@ export function ProfileCard ({name,photo,linkGit,linkLinkedin}: IProfileCardProp
   return (
     
     <div className=''>      
-      <div className='relative  '>       
+      <div className='relative'>       
           <img src={photoBackground} alt="photo_code_bg" className='w-56 ' />
           <div className='absolute w-4/5 translate-x-6 -top-9 min-h-full  ' >
             <img src={photo} className="rounded-full min-h-full bg-gradient-to-r p-[5px] from-[#242038] to-[#E2C044]"></img>
