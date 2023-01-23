@@ -10,31 +10,30 @@ export interface IAboutUsProps {
 export function AboutUs (props: IAboutUsProps) {
   return (
       <>
-          <div
+        <div
               id="aboutus"
-              className="flex flex-col items-center p-10 md:flex-row md:justify-around"
-          >
-              <div className="">
-                  <div className="my-32">
-                      <NewProfileCard
-                          photo={newPhotoHyt}
-                          github="https://github.com/Pd-Troia"
-                          linkedin="https://www.linkedin.com/in/hytalo-benaventana"
-                          labelName="Hytálo Benaventana"
-                          theme={true}
-                      />
-                  </div>
-                  <div className='my-14'>
-                      <NewProfileCard
-                          photo={photoMatheus}
-                          github="https://github.com/Pd-Troia"
-                          linkedin="https://www.linkedin.com/in/hytalo-benaventana"
-                          labelName="Matheus Coelho"
-                          theme={false}
-                      />
-                  </div>
-              </div>
-          </div>
+              className="flex flex-col items-center p-10 md:flex-row md:justify-center w-full "
+        >         
+            <div>
+                <NewProfileCard
+                photo={newPhotoHyt}
+                github="https://github.com/Pd-Troia"
+                linkedin="https://www.linkedin.com/in/hytalo-benaventana"
+                labelName="Hytálo Benaventana"
+                theme={true}
+            />
+            </div> 
+            <div className='my-16  ml-5'>
+                <NewProfileCard
+                    photo={photoMatheus}
+                    github="https://github.com/Pd-Troia"
+                    linkedin="https://www.linkedin.com/in/hytalo-benaventana"
+                    labelName="Matheus Coelho"
+                    theme={false}
+                />
+                                
+            </div>
+        </div>
           <div>
               <hr />
               <p className="mx-[15.5vw] mb-5 mt-2 text-xl text-slate-500 ">
