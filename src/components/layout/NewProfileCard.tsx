@@ -7,7 +7,7 @@ import vector_sup from '../../images/Vector_sup.svg'
 export interface INewProfileCardProps {
     photo: string
     github: string
-    linkedin: string    
+    linkedin: string
     labelName: string
     theme: boolean // true = cian theme; false = yellow theme
 }
@@ -15,12 +15,12 @@ export interface INewProfileCardProps {
 export function NewProfileCard({
     photo,
     github,
-    linkedin,    
+    linkedin,
     labelName,
     theme,
-}: INewProfileCardProps) {    
+}: INewProfileCardProps) {
     let cssLinkBoxGit =
-        'flex items-center justify-center font-bold rounded-l-xl px-6 py-2 bg-cianTheme'
+        'flex items-center justify-center font-bold rounded-l-xl px-3 py-1 lg:px-12 lg:py-4 bg-cianTheme'
     let cssLinkBoxLinkedin = `flex items-center justify-center rounded-r-xl md:px-6 md:py-2 font-bold bg-yellowBeige text-cianTheme`
     const cssphotoBox = theme
         ? 'bg-cianTheme relative  flex h-full w-full flex justify-center'
@@ -52,16 +52,28 @@ export function NewProfileCard({
                         className={cssLinkBoxGit} //linkBoxGit
                     >
                         <a href={github}>
-                            <BsGithub className="text-lg" />
-                            <p className="ml-3 text-sm md:text-lg">Git Hub</p>
+                            <div className="flex items-center justify-center">
+                                <BsGithub className="lg:mb-1 text-2xl md:text-3xl lg:text-3xl" />
+                                <p className="ml-3 text-sm md:text-md lg:text-lg">
+                                    Git Hub
+                                </p>
+                            </div>
                         </a>
                     </div>
                     <div
                         className={cssLinkBoxLinkedin} // linkboxLinkedin
                     >
                         <a href={linkedin}>
-                            <BsLinkedin className="text-2xl" />
-                            <p className="ml-3 text-sm md:text-lg">Linkedin</p>
+                            <div className="flex items-center justify-center">
+                                <div>
+                                    <BsLinkedin className="ml-1 md:ml-0 mb-1 text-lg lg:text-3xl" />
+                                </div>
+                                <div>
+                                    <p className="ml-3 text-sm md:text-md lg:text-lg">
+                                        Linkedin
+                                    </p>
+                                </div>
+                            </div>
                         </a>
                     </div>
                 </div>
