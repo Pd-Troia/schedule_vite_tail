@@ -28,11 +28,7 @@ export function LoginForm(props: ILoginFormProps) {
         password: yup.string().required("Campo vazio"),
     })
     //useForm
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm<ILoginFormProps>({
+    const { register, handleSubmit,formState: { errors },} = useForm<ILoginFormProps>({
         resolver: yupResolver(schema),
         defaultValues: {
             email: '',
