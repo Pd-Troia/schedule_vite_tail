@@ -11,6 +11,7 @@ import { ButtonInputVisible } from './ButtonInputVisible'
 import { CheckBox } from './CheckBox'
 import { Link } from 'react-router-dom'
 import { LinkLoginSocial } from './LinkLoginSocial'
+import { ServerMessage } from './ServerMessage'
 export interface ILoginFormProps {
     email?: string
     password?: string
@@ -19,7 +20,7 @@ export interface ILoginFormProps {
 
 export function LoginForm(props: ILoginFormProps) {
     //states
-
+    const [serverMessage,setServerMessage] = React.useState<string>("")
     const [isFirstAttempt, setIsFirstAttempt] = React.useState<boolean>(true)
     const [showPassword, setShowPassword] = React.useState<boolean>(false)
     //schema
@@ -44,8 +45,16 @@ export function LoginForm(props: ILoginFormProps) {
             },
             body: JSON.stringify(data),
         })
-            .then((res) => res.json())
-            .then((data) => console.log(data))
+            .then(async(res) => {
+                const data = {body: await res.json(), status: res.status}
+                return data
+            })
+            .then((data) => {
+                data.status == 200 
+                ? localStorage.setItem("token", data.body.token)
+                :console.log(data.status);
+                setServerMessage(data.body.msg);
+            })
             .catch((error) => console.log(error))
         setIsFirstAttempt(false)
     }
@@ -54,12 +63,15 @@ export function LoginForm(props: ILoginFormProps) {
         handleLogin(false)
     }
     const handleLogin = React.useContext(homeContext)
+
     // css Input
     const inputCss =
         'pl-3 rounded-r-lg text-xl bg-greyForm placeholder:text-lightBlue h-14 xl:w-[30rem] lg:w-96 sm:w-72 dmp:w-[16rem]'
     const borderCss = ''
     const iconCss =
         'py-1 flex h-14 items-center justify-center rounded-l-lg bg-brownStrong px-3 text-3xl text-whiteIcon'
+    
+    
     return (
         <div className="rounded bg-greyLogin p-3">
             <div className="flex justify-end">
@@ -180,6 +192,9 @@ export function LoginForm(props: ILoginFormProps) {
                             </span>
                         </Link>
                     </p>                    
+                </div>
+                <div className='flex justify-center '>
+                    <ServerMessage message={serverMessage}/>
                 </div>
             </form>
         </div>
