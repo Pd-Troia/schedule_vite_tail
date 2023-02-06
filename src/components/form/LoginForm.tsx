@@ -37,7 +37,16 @@ export function LoginForm(props: ILoginFormProps) {
     })
     //onSubmit
     const submit: SubmitHandler<ILoginFormProps> = (data) => {
-        console.log(data)
+        fetch(`${import.meta.env.VITE_REACT_API_AUTH}/auth/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+            .then((res) => res.json())
+            .then((data) => console.log(data))
+            .catch((error) => console.log(error))
         setIsFirstAttempt(false)
     }
     // close Menu
@@ -156,7 +165,7 @@ export function LoginForm(props: ILoginFormProps) {
                 </div>
                 <div className="flex flex-col items-center justify-center">
                     <div>
-                        <p> Ou use uma de nossas redes sociais</p>
+                        <p> Ou use uma destas redes sociais</p>
                     </div>
                     <div>
                         <LinkLoginSocial />
@@ -170,7 +179,7 @@ export function LoginForm(props: ILoginFormProps) {
                                 Se registre aqui.
                             </span>
                         </Link>
-                    </p>
+                    </p>                    
                 </div>
             </form>
         </div>

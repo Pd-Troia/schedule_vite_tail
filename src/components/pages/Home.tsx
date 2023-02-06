@@ -6,7 +6,7 @@ import HomeFront from './frame_page/HomeFront'
 import { createContext, useState, Dispatch } from 'react'
 export interface IHomeProps {}
 
-export const homeContext = createContext<Dispatch<boolean>>(() =>
+export const homeContext = createContext<Dispatch<boolean>>(() =>    
     console.log('default context')
 )
 
