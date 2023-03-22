@@ -8,8 +8,9 @@ export interface IConfirmMenuProps {
 }
 
 export function ConfirmMenu ({stateManager, data}: IConfirmMenuProps) {
-    const registerMember = React.useContext(RegisterContext)    
+    const {registerMember,fetching,serverMessage} = React.useContext(RegisterContext)!    
     const buttonConfirm = () =>{
+        console.log(fetching,serverMessage)
         stateManager(false)
         registerMember(data)
         return
