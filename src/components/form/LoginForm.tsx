@@ -12,6 +12,7 @@ import { CheckBox } from './CheckBox'
 import { Link } from 'react-router-dom'
 import { LinkLoginSocial } from './LinkLoginSocial'
 import { ServerMessage } from './ServerMessage'
+import { Loading } from '../layout/Loading'
 export interface ILoginFormProps {
     email?: string
     password?: string
@@ -23,6 +24,7 @@ export function LoginForm(props: ILoginFormProps) {
     const [serverMessage,setServerMessage] = React.useState<string>("")
     const [isFirstAttempt, setIsFirstAttempt] = React.useState<boolean>(true)
     const [showPassword, setShowPassword] = React.useState<boolean>(false)
+    const [showLoading,setShowLoading] = React.useState<boolean>(false)    
     //schema
     const schema = yup.object({
         email: yup.string().email("Insira um email válido").required("Campo vazio"),
@@ -37,26 +39,33 @@ export function LoginForm(props: ILoginFormProps) {
         },
     })
     //onSubmit
-    const submit: SubmitHandler<ILoginFormProps> = (data) => {
-        fetch(`${import.meta.env.VITE_REACT_API_AUTH}/auth/login`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
-            .then(async(res) => {
-                const data = {body: await res.json(), status: res.status}
-                return data
+    const submit: SubmitHandler<ILoginFormProps> = (data) => {                
+        if(!showLoading){
+            setShowLoading(true)
+            fetch(`${import.meta.env.VITE_REACT_API_AUTH}/auth/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
             })
-            .then((data) => {
-                data.status == 200 
-                ? localStorage.setItem("token", data.body.token)
-                :console.log(data.status);
-                setServerMessage(data.body.msg);
-            })
-            .catch((error) => console.log(error))
-        setIsFirstAttempt(false)
+                .then(async(res) => {
+                    const data = {body: await res.json(), status: res.status}
+                    return data
+                })
+                .then((data) => {
+                    data.status == 200 
+                    ? localStorage.setItem("token", data.body.token)
+                    :console.log(data.status);
+                    setShowLoading(false)
+                    setServerMessage(data.body.msg);
+                })
+                .catch((error) =>{                     
+                    setShowLoading(false)
+                    setServerMessage("Ocorreu um erro no servidor")
+                    console.log(error)})
+            setIsFirstAttempt(false)
+            }
     }
     // close Menu
     const closeMenu: React.MouseEventHandler<HTMLButtonElement> = () => {
@@ -170,7 +179,10 @@ export function LoginForm(props: ILoginFormProps) {
                         <div className="mt-10">&nbsp;</div>
                     )}
                 </div>
-                <div className="mt-6 flex justify-center ">
+                <div className="flex justify-center text-xl px-6 ">
+                    {showLoading ? <Loading/> : <ServerMessage message={serverMessage} />}
+                </div>
+                <div className="mt-3 flex justify-center ">
                     <button className="rounded-lg bg-black-90 px-24 py-3 text-2xl text-white">
                         Log in
                     </button>
@@ -191,10 +203,7 @@ export function LoginForm(props: ILoginFormProps) {
                                 Se registre aqui.
                             </span>
                         </Link>
-                    </p>                    
-                </div>
-                <div className='flex justify-center '>
-                    <ServerMessage message={serverMessage}/>
+                    </p>
                 </div>
             </form>
         </div>

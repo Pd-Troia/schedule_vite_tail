@@ -12,17 +12,9 @@ export function ServerMessage ({message}: IServerMessageProps) {
         }
         setVisible(true)
         const time = setTimeout(()=>{
-            setVisible(false)
+            setVisible(false)            
         },7000)
         return ()=> clearInterval(time)
     },[message])
-    return (
-    <>
-        {visible && (
-        <div className='bg-black px-6 py-3'>
-        <p className='text-white'>{message}</p>
-        </div>
-        )}    
-    </> 
-    )
+    return <>{visible && <p className="text-redFail">{message}</p>}</>
 }

@@ -46,7 +46,7 @@ export function RegisterForm({
             .min(6, 'Minimo de 6 caracteres')
             .matches(
                 regexPassword,
-                'Sua senha deve conter uma letra minúscula, letra minúscula, caracteres especiais(!#@$%&) e um número '
+                'Sua senha deve conter uma letra minúscula, letra minúscula, caracteres especiais(!#@$%&) e um número'
             ),
         confirmPassword: yup
             .string()
@@ -58,12 +58,7 @@ export function RegisterForm({
                 (value, context) => context.parent.password === value
             ),
     })
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-        watch,
-    } = useForm<IRegisterFormProps>({
+    const {register,handleSubmit,formState: { errors },watch} = useForm<IRegisterFormProps>({
         resolver: yupResolver(schema),
         defaultValues: {
             firstName: '',
@@ -99,51 +94,57 @@ export function RegisterForm({
                     <div className="dmm:absolute dmm:left-3 dmm:top-1 ">
                         <BackButton />
                     </div>
-                        <h1 className="my-2 text-center text-2xl font-medium dmm:my-7">
-                            Create account
-                        </h1>
+                    <h1 className="my-2 text-center text-2xl font-medium dmm:my-7">
+                        Create account
+                    </h1>
                     {/* "my-2 text-center text-2xl font-medium dmm:my-7 
                     absolute left-3 top-1*/}
                 </div>
                 <form onSubmit={handleSubmit(openConfirmMenu)}>
                     <div className="my-3 mx-7 flex justify-center">
-                        <Input
-                            name="firstName"
-                            type="text"
-                            required="true"
-                            placeholder="Primeiro nome"
-                            register={register}
-                            isFirstAttempt={isFirstAttempt}
-                            error={errors.firstName}
-                            inputClass={inputCss}
-                            defaultBorderClass={borderCss}
-                        />
+                        <div className="flex-col">
+                            <Input
+                                name="firstName"
+                                type="text"
+                                required="true"
+                                placeholder="Primeiro nome"
+                                register={register}
+                                isFirstAttempt={isFirstAttempt}
+                                error={errors.firstName}
+                                inputClass={inputCss}
+                                defaultBorderClass={borderCss}
+                            />
+                        </div>
                     </div>
                     <div className="my-3 mx-7 flex justify-center">
-                        <Input
-                            name="lastName"
-                            type="text"
-                            required="true"
-                            placeholder="Último nome"
-                            register={register}
-                            isFirstAttempt={isFirstAttempt}
-                            error={errors.lastName}
-                            inputClass={inputCss}
-                            defaultBorderClass={borderCss}
-                        />
+                        <div className="flex-col">
+                            <Input
+                                name="lastName"
+                                type="text"
+                                required="true"
+                                placeholder="Último nome"
+                                register={register}
+                                isFirstAttempt={isFirstAttempt}
+                                error={errors.lastName}
+                                inputClass={inputCss}
+                                defaultBorderClass={borderCss}
+                            />
+                        </div>
                     </div>
                     <div className="my-3 mx-7 flex justify-center">
-                        <Input
-                            name="email"
-                            type="text"
-                            required="true"
-                            placeholder="E-mail"
-                            register={register}
-                            isFirstAttempt={isFirstAttempt}
-                            error={errors.email}
-                            inputClass={inputCss}
-                            defaultBorderClass={borderCss}
-                        />
+                        <div className="flex-col">
+                            <Input
+                                name="email"
+                                type="text"
+                                required="true"
+                                placeholder="E-mail"
+                                register={register}
+                                isFirstAttempt={isFirstAttempt}
+                                error={errors.email}
+                                inputClass={inputCss}
+                                defaultBorderClass={borderCss}
+                            />
+                        </div>
                     </div>
                     <div className="my-3 mx-7 flex flex-col items-center">
                         <Input
@@ -157,7 +158,7 @@ export function RegisterForm({
                             inputClass={inputCss}
                             defaultBorderClass={borderCss}
                         />
-                        <div className="w-[66vw]">
+                        <div className="w-[66vw] lg:w-[53vw]">
                             <PasswordStrengthBar
                                 password={wPassword}
                                 scoreWords={[
@@ -173,22 +174,24 @@ export function RegisterForm({
                         </div>
                     </div>
                     <div className="my-3 mx-7 flex justify-center">
-                        <Input
-                            type="password"
-                            name="confirmPassword"
-                            required="true"
-                            placeholder="Confirmar Senha"
-                            register={register}
-                            error={errors.confirmPassword}
-                            isFirstAttempt={isFirstAttempt}
-                            inputClass={inputCss}
-                            defaultBorderClass={borderCss}
-                        />
+                        <div className="flex-col">
+                            <Input
+                                type="password"
+                                name="confirmPassword"
+                                required="true"
+                                placeholder="Confirmar Senha"
+                                register={register}
+                                error={errors.confirmPassword}
+                                isFirstAttempt={isFirstAttempt}
+                                inputClass={inputCss}
+                                defaultBorderClass={borderCss}
+                            />
+                        </div>
                     </div>
                     <div className="flex justify-center">
                         <input
                             className="cursor-pointer rounded-3xl bg-red-600 px-[16vw] py-2 text-2xl text-white dmm:px-[18vw]
-              dmg:px-[19.5vw] sm:px-[26vw] lg:px-[28vw]"
+              dmg:px-[19.5vw] sm:px-[26vw] lg:px-[22.5vw]"
                             value="Criar conta"
                             type="submit"
                             onClick={firstAttempt}

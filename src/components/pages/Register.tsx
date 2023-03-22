@@ -1,7 +1,6 @@
 import {createContext} from 'react';
 import { RegisterForm } from '../form/RegisterForm';
 import { useNavigate } from 'react-router-dom';
-import { useEffect,useState } from 'react';
 
 export interface IRegisterProps {
 }
@@ -23,8 +22,12 @@ export function Register (props: IRegisterProps) {
       })
           .then((res) => res.json())
           .then((data) => {
-              console.log(data)
-              navigate('/')
+                console.log(data)
+                if(data.status == 200){
+                    navigate('/')
+                }else{
+                    console.log(data)
+                }
           })
           .catch((err) => console.log(err))             
     } 

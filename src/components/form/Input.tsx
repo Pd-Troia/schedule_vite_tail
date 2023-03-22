@@ -20,26 +20,30 @@ export function Input ({name,placeholder,required,isFirstAttempt,register,type,e
   const sucessFieldIcon = <span className="text-greenSucess"><MdOutlineVerified/></span>
   const failFieldIcon = <span className="text-redFail"><MdOutlineErrorOutline/></span>  
   return (
-    <>
-        <div className='relative'>  
-          <input 
-          className={`${inputClass} ${!isFirstAttempt ? (!error ? validBorder : notValidBorder) : defaultBorderClass }`}  
-          {...register(name, {required:required})}          
-          placeholder={placeholder}
-          type={type}  
-          id={name}      
-          />
-          <div className="absolute right-2 top-1/4" >
-          {!isFirstAttempt && (error ? failFieldIcon : sucessFieldIcon) }
-          </div>                    
-        </div>
-        {error && (
-            <div className='flex justify-center mt-1' >
-              <p >* {error.message} * </p>
-            </div>
+      <>
+          <div className="relative">
+              <input
+                  className={`${inputClass} ${
+                      !isFirstAttempt
+                          ? !error
+                              ? validBorder
+                              : notValidBorder
+                          : defaultBorderClass
+                  }`}
+                  {...register(name, { required: required })}
+                  placeholder={placeholder}
+                  type={type}
+                  id={name}
+              />
+              <div className="absolute right-2 top-1/4">
+                  {!isFirstAttempt && (error ? failFieldIcon : sucessFieldIcon)}
+              </div>
+          </div>
+          {error && (
+              <div className="mt-1 flex justify-center">
+                  <p className=""> {error.message} </p>
+              </div>
           )}
-    </>
-   
-    
-  );
+      </>
+  )
 }
