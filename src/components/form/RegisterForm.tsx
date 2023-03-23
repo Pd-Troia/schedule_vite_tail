@@ -68,25 +68,29 @@ export function RegisterForm({
             confirmPassword: '',
         },
     })
+
     // first click on register button
     const firstAttempt = () => {
         setIsFirstAttempt(false)
     }
     const [isFirstAttempt, setIsFirstAttempt] = useState(true)
+    
     // submit area
     const [submitData, setSubmitData] = useState<object>({})
-    const [showConfirmMenu, setShowConfirmMenu] = useState<boolean>(false)
-    //onSubmitFunction
+    const [showConfirmMenu, setShowConfirmMenu] = useState<boolean>(false)   
     const openConfirmMenu: SubmitHandler<IRegisterFormProps> = (data) => {
         setShowConfirmMenu(true)
         setSubmitData(data)
     }
+    
     // watches
     const wPassword = watch('password')
+    
     // css border
     const inputCss =
         'bg-input w-[66vw] lg:w-[53vw]  py-2 pl-3 rounded-md  placeholder:text-lightBlue relative'
     const borderCss = 'border border-lightBlue'
+    
     return (
         <div className="relative flex flex-col items-center justify-center rounded-md bg-greyForm">
             <div className={showConfirmMenu ? 'blur-sm' : ''}>
