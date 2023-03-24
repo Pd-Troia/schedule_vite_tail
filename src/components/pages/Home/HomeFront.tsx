@@ -3,7 +3,7 @@ import { Link } from 'react-scroll';
 import { Button } from '../../layout/Button';
 import { HeaderMobile } from '../../layout/HeaderMobile';
 import HeaderHome from "../../layout/HeaderHome"
-import calendar from "../../../images/Rectangle 1.png";
+import calendar from '../../../images/schedule_photo.png'
 import { LoginButton } from '../../layout/LoginButton';
 import { useNavigate } from 'react-router-dom';
 export interface IHomeFrontProps {
@@ -11,18 +11,27 @@ export interface IHomeFrontProps {
 
 export default function HomeFront (props: IHomeFrontProps) {
   const navigate = useNavigate()
+  const [screenSize,setScreenSize] = React.useState<number>(0)
   const openLogin = ()=>{
     navigate("/cadastro")
   }
-  let viewPort = window.innerWidth
+  
+  React.useEffect(()=>{
+    const handleResize = ()=>{
+      setScreenSize(window.innerWidth)      
+    }
+    window.addEventListener('resize',handleResize)
+    return () => window.removeEventListener('resize',handleResize)
+  },[])
+  
 
   return (
     <div className="flex   w-screen h-screen min-w-full">
-      {viewPort > 768 && <div className=' w-auto'>
+      {screenSize > 1023 && <div className=' w-auto'>
         <img className='h-full' src={calendar} alt="home_img"/>
       </div>}     
       <div className='flex flex-col min-w-screen w-full px-12 py-6'>
-        {viewPort > 768 ?
+        {screenSize > 1023 ?
         <div className="flex justify-end mx-16 my-6 text-2xl">         
               <HeaderHome/>
               <div className='ml-16 text-[1.5em]'>

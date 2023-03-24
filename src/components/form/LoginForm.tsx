@@ -4,7 +4,7 @@ import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Input } from './Input'
 import { IoMdCloseCircle } from 'react-icons/io'
-import { homeContext } from '../pages/Home'
+import { homeContext } from '../pages/Home/Home'
 import { AiOutlineMail } from 'react-icons/ai'
 import { BsFillKeyFill, BsKeyFill } from 'react-icons/bs'
 import { ButtonInputVisible } from './ButtonInputVisible'
@@ -21,17 +21,24 @@ export interface ILoginFormProps {
 
 export function LoginForm(props: ILoginFormProps) {
     //states
-    const [serverMessage,setServerMessage] = React.useState<string>("")
+    const [serverMessage, setServerMessage] = React.useState<string>('')
     const [isFirstAttempt, setIsFirstAttempt] = React.useState<boolean>(true)
     const [showPassword, setShowPassword] = React.useState<boolean>(false)
-    const [showLoading,setShowLoading] = React.useState<boolean>(false)    
+    const [showLoading, setShowLoading] = React.useState<boolean>(false)
     //schema
     const schema = yup.object({
-        email: yup.string().email("Insira um email válido").required("Campo vazio"),
-        password: yup.string().required("Campo vazio"),
+        email: yup
+            .string()
+            .email('Insira um email válido')
+            .required('Campo vazio'),
+        password: yup.string().required('Campo vazio'),
     })
     //useForm
-    const { register, handleSubmit,formState: { errors },} = useForm<ILoginFormProps>({
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<ILoginFormProps>({
         resolver: yupResolver(schema),
         defaultValues: {
             email: '',
@@ -39,8 +46,8 @@ export function LoginForm(props: ILoginFormProps) {
         },
     })
     //onSubmit
-    const submit: SubmitHandler<ILoginFormProps> = (data) => {                
-        if(!showLoading){
+    const submit: SubmitHandler<ILoginFormProps> = (data) => {
+        if (!showLoading) {
             setShowLoading(true)
             fetch(`${import.meta.env.VITE_REACT_API_AUTH}/auth/login`, {
                 method: 'POST',
@@ -49,23 +56,24 @@ export function LoginForm(props: ILoginFormProps) {
                 },
                 body: JSON.stringify(data),
             })
-                .then(async(res) => {
-                    const data = {body: await res.json(), status: res.status}
+                .then(async (res) => {
+                    const data = { body: await res.json(), status: res.status }
                     return data
                 })
                 .then((data) => {
-                    data.status == 200 
-                    ? localStorage.setItem("token", data.body.token)
-                    :console.log(data.status);
+                    data.status == 200
+                        ? localStorage.setItem('token', data.body.token)
+                        : console.log(data.status)
                     setShowLoading(false)
-                    setServerMessage(data.body.msg);
+                    setServerMessage(data.body.msg)
                 })
-                .catch((error) =>{                     
+                .catch((error) => {
                     setShowLoading(false)
-                    setServerMessage("Ocorreu um erro no servidor")
-                    console.log(error)})
+                    setServerMessage('Ocorreu um erro no servidor')
+                    console.log(error)
+                })
             setIsFirstAttempt(false)
-            }
+        }
     }
     // close Menu
     const closeMenu: React.MouseEventHandler<HTMLButtonElement> = () => {
@@ -79,8 +87,7 @@ export function LoginForm(props: ILoginFormProps) {
     const borderCss = ''
     const iconCss =
         'py-1 flex h-14 items-center justify-center rounded-l-lg bg-brownStrong px-3 text-3xl text-whiteIcon'
-    
-    
+
     return (
         <div className="rounded bg-greyLogin p-3">
             <div className="flex justify-end">
@@ -179,8 +186,12 @@ export function LoginForm(props: ILoginFormProps) {
                         <div className="mt-10">&nbsp;</div>
                     )}
                 </div>
-                <div className="flex justify-center text-xl px-6 ">
-                    {showLoading ? <Loading/> : <ServerMessage message={serverMessage} />}
+                <div className="flex justify-center px-6 text-xl ">
+                    {showLoading ? (
+                        <Loading />
+                    ) : (
+                        <ServerMessage message={serverMessage} />
+                    )}
                 </div>
                 <div className="mt-3 flex justify-center ">
                     <button className="rounded-lg bg-black-90 px-24 py-3 text-2xl text-white">
