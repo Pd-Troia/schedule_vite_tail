@@ -22,6 +22,10 @@ module.exports = {
                 'black-90': '#0C0101',
                 cianTheme: '#61A0AF',
                 yellowBeige: '#CECE25',
+                greyWeak: "#E0E0E0",
+                greyMedium: "#BEBEBE",
+                greyStrong: "#949494",
+                
             },
             screens: {
                 dmp: '320px',

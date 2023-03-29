@@ -11,7 +11,7 @@ export interface IHomeFrontProps {
 
 export default function HomeFront (props: IHomeFrontProps) {
   const navigate = useNavigate()
-  const [screenSize,setScreenSize] = React.useState<number>(0)
+  const [screenSize,setScreenSize] = React.useState<number>(window.innerWidth)
   const openLogin = ()=>{
     navigate("/cadastro")
   }
@@ -47,7 +47,7 @@ export default function HomeFront (props: IHomeFrontProps) {
           <p className='text-6xl font-bold my-6'>Schedule</p>
           <p className='dmg:text-2xl text-slate-300 mx-3 '>
             Organize seu tempo com amigos 
-            ou colaboradores de uma forma totalmente inovadora. 
+            ou colaboradores de uma forma inovadora. 
           </p>
         </div>
         <div className='flex justify-end mr-16 my-16 '>          
