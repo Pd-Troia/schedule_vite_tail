@@ -11,7 +11,7 @@ export interface IHeaderButtonProps {
 }
 
 export function HeaderButton ({colors:{bgColor,textColor,bgHoverColor,textHoverColor},textString}: IHeaderButtonProps) {
-    const cssbutton = `transition delay-50 rounded-full px-3 py-1 bg-${bgColor} text-${textColor} hover:text-${textHoverColor} hover:bg-${bgHoverColor}`   
+    const cssbutton = `transition delay-50 rounded-full md:px-6 md:p-2 px-3 py-1 bg-greyMedium text-black hover:text-greyWeak hover:bg-greyStrong`   
     return (
         <button className={cssbutton}>
             {textString}
