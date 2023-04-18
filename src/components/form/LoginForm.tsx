@@ -34,11 +34,7 @@ export function LoginForm(props: ILoginFormProps) {
         password: yup.string().required('Campo vazio'),
     })
     //useForm
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm<ILoginFormProps>({
+    const {register,handleSubmit,formState: { errors }} = useForm<ILoginFormProps>({
         resolver: yupResolver(schema),
         defaultValues: {
             email: '',
@@ -61,9 +57,12 @@ export function LoginForm(props: ILoginFormProps) {
                     return data
                 })
                 .then((data) => {
-                    data.status == 200
-                        ? localStorage.setItem('token', data.body.token)
-                        : console.log(data.status)
+                    if(data.status == 200){                        
+                        localStorage.setItem('token', data.body.token);
+                        localStorage.setItem('id',data.body.id)                                             
+                    }else{
+                        console.log(data.status)
+                    }                    
                     setShowLoading(false)
                     setServerMessage(data.body.msg)
                 })

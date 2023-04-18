@@ -1,20 +1,15 @@
 import * as React from 'react'; 
-
+import {Link} from 'react-router-dom'
 export interface IHeaderButtonProps {
-    colors: {
-    bgColor: string
-    textColor: string
-    bgHoverColor: string
-    textHoverColor : string
-    }
-    textString : string
+    to : string,
+    children: string  
 }
 
-export function HeaderButton ({colors:{bgColor,textColor,bgHoverColor,textHoverColor},textString}: IHeaderButtonProps) {
-    const cssbutton = `transition delay-50 rounded-full md:px-6 md:p-2 px-3 py-1 bg-greyMedium text-black hover:text-greyWeak hover:bg-greyStrong`   
+export function HeaderButton ({children, to}: IHeaderButtonProps) {
+    const cssbutton = ""   
     return (
-        <button className={cssbutton}>
-            {textString}
-        </button>
+        <Link to={to} >
+            <p className='text-label text-xl hover:text-bold'>{children}</p>
+        </Link>
   );
 }

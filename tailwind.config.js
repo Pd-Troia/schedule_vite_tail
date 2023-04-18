@@ -22,9 +22,13 @@ module.exports = {
                 'black-90': '#0C0101',
                 cianTheme: '#61A0AF',
                 yellowBeige: '#CECE25',
-                greyWeak: "#E0E0E0",
-                greyMedium: "#BEBEBE",
-                greyStrong: "#949494",
+                "button": "#D9D9D9",
+                "card": "#BEBEBE",
+                label: "#545454",
+                tittle: "#262626",
+                dashboardPrimary: "#D9D9D9",
+                dashboardSecondary: '#A6A6A6'
+
                 
             },
             screens: {
