@@ -26,8 +26,8 @@ module.exports = {
                 "card": "#BEBEBE",
                 label: "#545454",
                 tittle: "#262626",
-                dashboardPrimary: "#D9D9D9",
-                dashboardSecondary: '#A6A6A6'
+                panelPrimary: "#D9D9D9",
+                panelSecondary: '#A6A6A6'
 
                 
             },

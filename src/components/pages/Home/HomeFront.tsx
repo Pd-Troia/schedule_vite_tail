@@ -13,7 +13,7 @@ export interface IHomeFrontProps {
 export default function HomeFront (props: IHomeFrontProps) {
   const navigate = useNavigate()
   const [screenSizeWidth] = useScreenSize()
-  const openLogin = ()=>{
+  const openRegister = ()=>{
     navigate("/cadastro")
   }  
   
@@ -45,7 +45,7 @@ export default function HomeFront (props: IHomeFrontProps) {
           </p>
         </div>
         <div className='flex justify-end mr-16 my-16 '>          
-          <Button handleButton={openLogin}>cadastrar</Button>
+          <Button handleButton={openRegister}>cadastrar</Button>
         </div>
       </div>      
     </div>
