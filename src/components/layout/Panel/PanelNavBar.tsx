@@ -20,12 +20,12 @@ export function PanelNavBar(props: IPanelHeaderProps) {
     }
     const mobileVersion = (
         <div className="flex items-center justify-center">
-            <div className="cursor-pointer text-2xl">
+            <div className="cursor-pointer text-2xl justify-center flex">
                 <button onClick={handleMenu}>
                     <AiOutlineMenu />
                 </button>
             </div>
-            <button className="ml-7 text-2xl" onClick={logOut}>
+            <button className="ml-7 text-2xl justify-center flex" onClick={logOut}>
                 <BiLogOut />
             </button>
         </div>

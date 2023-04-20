@@ -3,7 +3,7 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                plexThai: "'IBM Plex Sans Thai Looped',serif",
+                plexThai: "IBM Plex Sans Thai Looped,serif",
             },
             colors: {
                 greybg: '#EEF2F1',
@@ -28,7 +28,8 @@ module.exports = {
                 tittle: "#262626",
                 panelPrimary: "#D9D9D9",
                 panelSecondary: '#A6A6A6',
-                menuColor: "#0C0C0C"
+                menuColor: "#0C0C0C",
+                tittleTheme: "#282828"
 
                 
             },
