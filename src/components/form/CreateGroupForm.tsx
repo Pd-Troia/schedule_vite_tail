@@ -10,7 +10,7 @@ export interface ICreateGroupFormProps {
 const schema = yup.object({
     groupName: yup.string()
 })
-const inputClass = ''
+const inputClass = 'rounded bg-inputForm p-1 '
 const defaultBorderClass = ''
 export function CreateGroupForm (props: ICreateGroupFormProps) {    
     const [isFirstAttempt, setIsFirstAttempt] = React.useState<boolean>(true)
@@ -25,7 +25,10 @@ export function CreateGroupForm (props: ICreateGroupFormProps) {
 
     }
     return (
-    <div>
+    <div className='flex flex-col bg-card rounded-md px-5 py-3'>
+      <label className='text-label'>
+        Nome do grupo
+      </label>
       <form onSubmit={handleSubmit(submit)}>
         <Input 
         name="Nome do grupo" 

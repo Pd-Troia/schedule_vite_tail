@@ -29,7 +29,8 @@ module.exports = {
                 panelPrimary: "#D9D9D9",
                 panelSecondary: '#A6A6A6',
                 menuColor: "#0C0C0C",
-                tittleTheme: "#282828"
+                tittleTheme: "#282828",
+                inputForm: "#B2B2B2"
 
                 
             },

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import useScreenSize from '../../functions/hooks/useScreenSize';
+import { CreateGroupForm } from '../../form/CreateGroupForm';
 
 
 export interface IPanelGroupsProps {
@@ -8,12 +9,17 @@ export interface IPanelGroupsProps {
 export function Groups (props: IPanelGroupsProps) {  
   const [width] = useScreenSize()
   return (
-      <div className="flex justify-center">
-          <p className=" my-4 md:mt-10 md:text-4xl text-centerdmg:text-4xl font-plexThai text-3xl  text-tittleTheme">
-              Crie seu grupo {width <= 767 && <br />}
-              ou {width <= 767 && <br />}
-              utilize-os abaixo
-          </p>
+      <div className="flex flex-col">
+          <div className="flex justify-center">
+              <p className=" text-centerdmg:text-4xl my-4 font-plexThai text-3xl text-tittleTheme md:mt-10  md:text-4xl">
+                  Crie seu grupo {width <= 767 && <br />}
+                  ou {width <= 767 && <br />}
+                  utilize-os abaixo
+              </p>
+          </div>
+          <div className='flex justify-center'>
+              <CreateGroupForm />
+          </div>
       </div>
   )
 }
