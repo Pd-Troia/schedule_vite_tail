@@ -43,7 +43,7 @@ export function PanelNavBar(props: IPanelHeaderProps) {
         </div>
     )
     return (
-        <nav className="fixed w-full">
+        <nav className="w-full">
             <div className="flex justify-between px-10 py-5">
                 <div>
                     <NavButton to="/">Home</NavButton>

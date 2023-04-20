@@ -4,9 +4,5 @@ export interface IPanelHelpProps {
 }
 
 export function Help (props: IPanelHelpProps) {
-  return (
-    <div>
-      
-    </div>
-  );
+  return <div>testando ajuda</div>
 }

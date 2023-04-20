@@ -7,7 +7,7 @@ export interface IPanelGroupsProps {
 export function Groups (props: IPanelGroupsProps) {  
   return (
     <div className='flex justify-center'>
-      
+      testando grupos
     </div>
   );
 }

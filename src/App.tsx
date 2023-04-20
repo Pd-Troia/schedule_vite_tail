@@ -18,7 +18,7 @@ function App() {
                     <Route element={<Panel />} path="/panel">
                         <Route
                             element={<Help />}
-                            path="/panel/help"
+                            path="/panel/ajuda"
                         />
                         <Route
                             element={<Groups />}

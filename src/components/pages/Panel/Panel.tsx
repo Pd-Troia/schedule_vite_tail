@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import { PanelNavBar } from '../../layout/Panel/PanelNavBar'
+import { PanelMenu } from '../../layout/Panel/PanelMenu'
 export interface IPanelProps {}
 export interface IPanelContext {
     token: string | null
@@ -16,10 +17,11 @@ export function Panel(props: IPanelProps) {
     const id = localStorage.getItem('id')
     
     return (
-        <PanelContext.Provider value={{ token, id: id,showMenu, setShowMenu}}>
-            <div className="from-40% to-40% h-screen bg-gradient-to-b from-panelPrimary to-panelSecondary ">                                  
+        <PanelContext.Provider value={{ token, id: id, showMenu, setShowMenu }}>
+            <div className="from-40% to-40% relative h-screen bg-gradient-to-b from-panelPrimary to-panelSecondary ">
+                <PanelMenu />
                 <PanelNavBar />
-                <Outlet />                
+                <Outlet />
             </div>
         </PanelContext.Provider>
     )

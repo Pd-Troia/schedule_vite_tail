@@ -22,12 +22,13 @@ module.exports = {
                 'black-90': '#0C0101',
                 cianTheme: '#61A0AF',
                 yellowBeige: '#CECE25',
-                "button": "#D9D9D9",
-                "card": "#BEBEBE",
+                button: "#D9D9D9",
+                card: "#BEBEBE",
                 label: "#545454",
                 tittle: "#262626",
                 panelPrimary: "#D9D9D9",
-                panelSecondary: '#A6A6A6'
+                panelSecondary: '#A6A6A6',
+                menuColor: "#0C0C0C"
 
                 
             },

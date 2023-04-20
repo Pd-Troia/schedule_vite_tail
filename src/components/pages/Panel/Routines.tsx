@@ -4,9 +4,5 @@ export interface IPanelRoutinesProps {
 }
 
 export function Routines (props: IPanelRoutinesProps) {
-  return (
-    <div>
-      
-    </div>
-  );
+  return <div>testando Rotinas</div>
 }
