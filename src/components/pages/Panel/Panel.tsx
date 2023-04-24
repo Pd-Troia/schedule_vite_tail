@@ -8,7 +8,18 @@ export interface IPanelContext {
     id: string | null
     setShowMenu: React.Dispatch<React.SetStateAction<boolean>>|Function
     showMenu: boolean
+}
+export interface IRoutine {   
+    _id: string;
+    idUser: string;
+    intervals: interval[];   
 } 
+export interface interval {    
+    intial: number;
+    ending: number;
+    label: string;
+    _id: string;
+}
 export const PanelContext = createContext<IPanelContext>({ token: null, id:null, showMenu:false, setShowMenu:()=>{}})
 export function Panel(props: IPanelProps) {
     const [routines,setRoutines] = useState<object>({})
