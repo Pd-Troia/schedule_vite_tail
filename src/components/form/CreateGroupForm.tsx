@@ -8,12 +8,16 @@ import { SelectInput } from './SelectInput';
 
 export interface ICreateGroupFormProps {
 }
+export interface ICreateFormFields {
+    groupName:string
+}
 //schema
 const schema = yup.object({
     groupName: yup
     .string()
+    .min(3,"Minimo de 3 caracteres")
     .required("Campo requerido")
-    .matches(new RegExp(/^[a-zA-Z1-9]$*/,"O grupo deve conter apenas letras e numeros"))
+    .matches(new RegExp(/^[a-zA-Z1-9]+$/),"O nome do grupo deve conter apenas letras ou números")
     
 })
 //css
@@ -27,18 +31,18 @@ const elementsList = [
 ]
 export function CreateGroupForm (props: ICreateGroupFormProps) {    
     const [isFirstAttempt, setIsFirstAttempt] = React.useState<boolean>(true)
-    const {register,handleSubmit,formState: { errors }} = useForm<ICreateGroupFormProps>({
+    const {register,handleSubmit,formState: { errors }} = useForm<ICreateGroupFormProps&ICreateFormFields>({
         resolver: yupResolver(schema),
         defaultValues: {
             groupName: '',            
         },
     })
-
+    
     const submit = (data:object) =>{
         console.log(data)
     }
     return (
-        <div className="rounded-md bg-card px-5 py-3 ">
+        <div className="w-[238px] rounded-md bg-card px-5 py-3">
             <form onSubmit={handleSubmit(submit)}>
                 <div className="">
                     <label className="text-label">Nome do grupo</label>
@@ -64,8 +68,12 @@ export function CreateGroupForm (props: ICreateGroupFormProps) {
                 <div className="flex justify-center">
                     <FormButton label="Criar grupo" />
                 </div>
-                <div>
-                    {console.log(errors)}
+                <div className="my-1">                    
+                    {errors.groupName && (                        
+                        <p className=" overflow-hidden text-center text-redFail">
+                            {errors.groupName.message}
+                        </p>                        
+                    )}
                 </div>
             </form>
         </div>
