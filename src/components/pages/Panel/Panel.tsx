@@ -29,7 +29,7 @@ export function Panel(props: IPanelProps) {
     
     return (
         <PanelContext.Provider value={{ token, id: id, showMenu, setShowMenu }}>
-            <div className="from-40% to-40% relative h-screen bg-gradient-to-b from-panelPrimary to-panelSecondary ">
+            <div className="from-40% to-40% relative h-full bg-gradient-to-b from-panelPrimary to-panelSecondary ">
                 <PanelMenu />
                 <PanelNavBar />
                 <Outlet />

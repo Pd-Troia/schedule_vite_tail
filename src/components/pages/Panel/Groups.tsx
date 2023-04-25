@@ -8,16 +8,20 @@ export interface IPanelGroupsProps {
 
 export function Groups (props: IPanelGroupsProps) {  
   const [width] = useScreenSize()
+  const tittleColCondition = width <= 767 && "flex-col content-center" 
+  const textSizes = 'dmg:text-4xl text-3xl md:text-4xl'
   return (
       <div className="flex flex-col">
-          <header className="flex justify-center">
-              <p className=" text-centerdmg:text-4xl my-4 font-plexThai text-3xl text-tittleTheme md:mt-10  md:text-4xl">
-                  Crie seu grupo {width <= 767 && <br />}
-                  ou {width <= 767 && <br />}
-                  utilize-os abaixo
-              </p>
+          <header
+              className={` ${textSizes} my-4 flex justify-center text-tittleTheme md:mt-10 `}
+          >
+              <div className={`${tittleColCondition} flex text-center`}>
+                  <h1 className=''>Crie seu grupo </h1>
+                  <h1 className=''> ou </h1>
+                  <h1>utilize-os abaixo</h1>
+              </div>
           </header>
-          <div className='flex justify-center'>
+          <div className="my-2 flex justify-center">
               <CreateGroupForm />
           </div>
       </div>
