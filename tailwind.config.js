@@ -30,7 +30,8 @@ module.exports = {
                 panelSecondary: '#A6A6A6',
                 menuColor: "#0C0C0C",
                 tittleTheme: "#282828",
-                inputForm: "#B2B2B2"
+                inputForm: "#B2B2B2",
+                cardButton: "#D9D9D9"
 
                 
             },

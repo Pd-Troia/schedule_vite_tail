@@ -15,7 +15,7 @@ export function SelectInput ({name,register,elementsList}: ISelectInputProps) {
       return <option key={element._id} value={element._id} id={element._id}>{element.label}</option>
   })
   return (
-    <select className='bg-inputForm rounded' {...register(name)}> 
+    <select className='bg-inputForm rounded w-full' {...register(name)}> 
         {options}
     </select>
   );

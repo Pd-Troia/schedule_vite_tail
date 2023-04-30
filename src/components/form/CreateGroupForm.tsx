@@ -5,6 +5,8 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { Input } from './Input'
 import { FormButton } from './FormButton';
 import { SelectInput } from './SelectInput';
+import { useGetRoutinesbyIdUserAsync } from '../functions/hooks/useGetRoutinesAsync';
+import { PanelContext } from '../pages/Panel/Panel';
 
 export interface ICreateGroupFormProps {
 }
@@ -23,13 +25,15 @@ const schema = yup.object({
 //css
 const inputClass = 'rounded bg-inputForm p-1 '
 const defaultBorderClass = ''
-
+// test element
 const elementsList = [
     { label: 'Opção 1', _id: '1' },
     { label: 'Opção 2', _id: '2' },
     { label: 'Opção 3', _id: '3' },
 ]
 export function CreateGroupForm (props: ICreateGroupFormProps) {    
+    const {id,token} = React.useContext(PanelContext)
+    const routinesData = useGetRoutinesbyIdUserAsync(id,token)    
     const [isFirstAttempt, setIsFirstAttempt] = React.useState<boolean>(true)
     const {register,handleSubmit,formState: { errors }} = useForm<ICreateGroupFormProps&ICreateFormFields>({
         resolver: yupResolver(schema),

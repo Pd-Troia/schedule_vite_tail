@@ -1,30 +1,36 @@
-import * as React from 'react';
-import useScreenSize from '../../functions/hooks/useScreenSize';
-import { CreateGroupForm } from '../../form/CreateGroupForm';
+import * as React from 'react'
+import useScreenSize from '../../functions/hooks/useScreenSize'
+import { CreateGroupForm } from '../../form/CreateGroupForm'
+import { UserGroup } from '../../layout/Panel/UserGroup'
+import { useGetRoutinesbyIdUserAsync } from '../../functions/hooks/useGetRoutinesAsync'
 
+export interface IPanelGroupsProps {}
 
-export interface IPanelGroupsProps {
+export function Groups(props: IPanelGroupsProps) {
+    const [width] = useScreenSize()    
+    const tittleColCondition = width <= 767 && 'flex-col content-center'
+    const textSizes = 'dmg:text-4xl text-3xl md:text-4xl'
+    return (
+        <main className="flex min-h-screen flex-col">
+            <header
+                className={` ${textSizes} my-4 flex justify-center text-tittleTheme md:mt-10 `}
+            >
+                <div className={`${tittleColCondition} flex text-center`}>
+                    <h1 className="">Crie seu grupo </h1>
+                    <h1 className=""> ou </h1>
+                    <h1>utilize-os abaixo</h1>
+                </div>
+            </header>
+            <div className="my-2 flex justify-center">
+                <CreateGroupForm />
+            </div>
+            <div className="m-5 grid grid-cols-1 place-items-center justify-center gap-y-14 md:grid-cols-2 lg:grid-cols-3">
+                <UserGroup groupName="Teste1" />
+                <UserGroup groupName="Teste2" />
+                <UserGroup groupName="Teste3" />
+                <UserGroup groupName="Teste4" />
+                <UserGroup groupName="Teste5" />
+            </div>
+        </main>
+    )
 }
-
-export function Groups (props: IPanelGroupsProps) {  
-  const [width] = useScreenSize()
-  const tittleColCondition = width <= 767 && "flex-col content-center" 
-  const textSizes = 'dmg:text-4xl text-3xl md:text-4xl'
-  return (
-      <div className="flex flex-col">
-          <header
-              className={` ${textSizes} my-4 flex justify-center text-tittleTheme md:mt-10 `}
-          >
-              <div className={`${tittleColCondition} flex text-center`}>
-                  <h1 className=''>Crie seu grupo </h1>
-                  <h1 className=''> ou </h1>
-                  <h1>utilize-os abaixo</h1>
-              </div>
-          </header>
-          <div className="my-2 flex justify-center">
-              <CreateGroupForm />
-          </div>
-      </div>
-  )
-}
-
