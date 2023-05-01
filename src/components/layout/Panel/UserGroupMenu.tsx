@@ -6,9 +6,8 @@ export interface IUserGroupMenuProps {}
 
 export function UserGroupMenu(props: IUserGroupMenuProps) {
     const {menuOption,setMenuOption} = React.useContext(MenuContext)
-    const handleClick = (option:menuKind)=>{        
-        setMenuOption(option)
-        console.log(menuOption)
+    const handleClick = (option:menuKind)=>{ 
+        setMenuOption(option)        
     }
     return (
         <>

@@ -24,11 +24,7 @@ export const MenuContext = React.createContext<ImenuContext>({
 
 
 export function UserGroup({groupName}: IUserGroupProps) {
-    const [menuOption,setMenuOption] = React.useState<menuKind>(menuKind.menu)
-
-    const returnMenu = React.useCallback(()=>{
-        setMenuOption(menuKind.menu)        
-    },[])
+    const [menuOption,setMenuOption] = React.useState<menuKind>(menuKind.menu)   
 
     return (
         <MenuContext.Provider value={{menuOption,setMenuOption}}>
@@ -41,7 +37,7 @@ export function UserGroup({groupName}: IUserGroupProps) {
                         case menuKind.menu:
                             return <UserGroupMenu />
                         case menuKind.changeRoutine:
-                            return <UserGroupChangeRoutine handleBlur={returnMenu}/>
+                            return <UserGroupChangeRoutine />
                         case menuKind.insertMember:
                             return <div>456</div>
                         case menuKind.removeMember:

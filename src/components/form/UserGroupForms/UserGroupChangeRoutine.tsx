@@ -2,31 +2,33 @@ import * as React from 'react';
 import { SelectInput } from '../SelectInput';
 import {useForm} from 'react-hook-form'
 import { FormButton } from '../FormButton';
+import { MenuContext, menuKind } from '../../layout/Panel/UserGroup';
 
 export interface IUserGroupChangeRoutineProps {
-    handleBlur: ()=>void
+    
 }
 
-export function UserGroupChangeRoutine ({handleBlur}: IUserGroupChangeRoutineProps) {
-    const mainSelectRef = React.useRef<HTMLDivElement|null>(null)
+export function UserGroupChangeRoutine (props: IUserGroupChangeRoutineProps) {   
     const {register,handleSubmit,formState: { errors }} = useForm()
+    const {setMenuOption} = React.useContext(MenuContext)
     // test element
     const elementsList = [
         { label: 'Opção 1', _id: '1' },
         { label: 'Opção 2', _id: '2' },
         { label: 'Opção 3', _id: '3' },
     ]
-    React.useEffect(()=>{
-        mainSelectRef.current && mainSelectRef.current.focus()
-    },[])
-    const submit = ()=>{
-        
+
+    const submit = (data:object)=>{
+        console.log(data)
+    }
+    const exitToMenu = ()=>{
+        setMenuOption(menuKind.menu)
     }
     return (
-        <div className="h-full" onBlur={handleBlur}>
+        <div className="flex h-full flex-col justify-around ">
             <form className="h-full" onSubmit={handleSubmit(submit)}>
-                <div className="flex h-full w-full flex-col justify-around p-3">
-                    <div ref={mainSelectRef}>
+                <div className="flex h-full w-full flex-col justify-center ">
+                    <div>
                         <SelectInput
                             name={'changeRoutine'}
                             register={register}
@@ -34,10 +36,13 @@ export function UserGroupChangeRoutine ({handleBlur}: IUserGroupChangeRoutinePro
                         />
                     </div>
                     <div className="flex justify-center">
-                        <FormButton label="Trocar Rotina" />
+                        <FormButton wFull={true} label="Trocar Rotina" />
                     </div>
                 </div>
             </form>
+            <div className="flex justify-center ">
+                <FormButton handleClick={exitToMenu} label={'Voltar ao menu'} />
+            </div>
         </div>
     )
 }
