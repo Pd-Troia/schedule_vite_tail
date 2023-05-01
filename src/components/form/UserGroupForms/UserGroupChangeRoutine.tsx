@@ -25,7 +25,7 @@ export function UserGroupChangeRoutine (props: IUserGroupChangeRoutineProps) {
         setMenuOption(menuKind.menu)
     }
     return (
-        <div className="flex h-full flex-col justify-around ">
+        <div className="flex h-full flex-col justify-around">
             <form className="h-full" onSubmit={handleSubmit(submit)}>
                 <div className="flex h-full w-full flex-col justify-center ">
                     <div>

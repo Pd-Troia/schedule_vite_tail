@@ -16,9 +16,15 @@ export function Groups(props: IPanelGroupsProps) {
                 className={` ${textSizes} my-4 flex justify-center text-tittleTheme md:mt-10 `}
             >
                 <div className={`${tittleColCondition} flex text-center`}>
-                    <h1 className="">Crie seu grupo </h1>
-                    <h1 className=""> ou </h1>
-                    <h1>utilize-os abaixo</h1>
+                    {width < 767 ? (
+                        <>
+                            <h1>Crie seu grupo </h1>
+                            <h1>ou</h1>
+                            <h1>utilize-os abaixo</h1>
+                        </>
+                    ) : (
+                        <h1>Crie seu grupo ou utilize-os abaixo</h1>
+                    )}
                 </div>
             </header>
             <div className="my-2 flex justify-center">

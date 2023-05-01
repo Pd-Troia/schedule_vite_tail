@@ -8,7 +8,9 @@ export interface IFormButtonProps {
 }
 
 export function FormButton ({label, wFull, type,handleClick}: IFormButtonProps) {
-    const cssButton = `${wFull && "w-full mt-1"} px-8 py-5 rounded bg-inputForm` 
+    const cssHover =
+        'hover:bg-secondaryButtonColor hover:text-secondaryButtonText transition delay-30'
+    const cssButton = `${cssHover} ${wFull && "w-full mt-1"} px-8 py-5 rounded bg-inputForm` 
     return (    
     <button className={cssButton} type={ type ? type : "submit"} onClick={handleClick}>
         <span>{label}</span>

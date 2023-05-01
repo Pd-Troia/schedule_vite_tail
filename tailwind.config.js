@@ -31,8 +31,11 @@ module.exports = {
                 menuColor: "#0C0C0C",
                 tittleTheme: "#282828",
                 inputForm: "#B2B2B2",
+                secondaryButtonColor: "#3D3D3D",
+                secondaryButtonText: "#D2D2D2",
                 cardButton: "#D9D9D9"
-
+                
+                
                 
             },
             screens: {
