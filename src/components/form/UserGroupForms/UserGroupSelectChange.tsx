@@ -4,11 +4,11 @@ import {useForm} from 'react-hook-form'
 import { FormButton } from '../FormButton';
 import { MenuContext, menuKind } from '../../layout/Panel/UserGroup';
 
-export interface IUserGroupChangeRoutineProps {
+export interface IUserGroupSelectChangeProps {
     
 }
 
-export function UserGroupChangeRoutine (props: IUserGroupChangeRoutineProps) {   
+export function UserGroupSelectChange (props: IUserGroupSelectChangeProps) {   
     const {register,handleSubmit,formState: { errors }} = useForm()
     const {setMenuOption} = React.useContext(MenuContext)
     // test element
@@ -30,7 +30,7 @@ export function UserGroupChangeRoutine (props: IUserGroupChangeRoutineProps) {
                 <div className="flex h-full w-full flex-col justify-center ">
                     <div>
                         <SelectInput
-                            name={'changeRoutine'}
+                            name={'SelectChange'}
                             register={register}
                             elementsList={elementsList}
                         />

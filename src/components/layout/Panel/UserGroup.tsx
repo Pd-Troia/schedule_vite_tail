@@ -1,10 +1,17 @@
 import * as React from 'react'
 import { UserGroupCardButton } from './UserGroupCardButton'
 import { UserGroupMenu } from './UserGroupMenu'
-import { UserGroupChangeRoutine } from '../../form/UserGroupForms/UserGroupChangeRoutine'
+import { UserGroupSelectChange } from '../../form/UserGroupForms/UserGroupSelectChange'
+
+export interface member{
+    idUser:string,
+    idRoutine: string,
+    _id: string
+}
 
 export interface IUserGroupProps {
     groupName: string
+    members: member[]
 }
 export enum menuKind {
     menu = 'menu',
@@ -37,7 +44,7 @@ export function UserGroup({groupName}: IUserGroupProps) {
                         case menuKind.menu:
                             return <UserGroupMenu />
                         case menuKind.changeRoutine:
-                            return <UserGroupChangeRoutine />
+                            return <UserGroupSelectChange />
                         case menuKind.insertMember:
                             return <div>456</div>
                         case menuKind.removeMember:
