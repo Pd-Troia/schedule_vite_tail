@@ -24,7 +24,7 @@ const schema = yup.object({
 })
 //css
 const inputClass = 'rounded bg-inputForm p-1 '
-const defaultBorderClass = ''
+const defaultBorderClass = 'border border-lightBlue'
 // test element
 const elementsList = [
     { label: 'Opção 1', _id: '1' },
@@ -72,11 +72,11 @@ export function CreateGroupForm (props: ICreateGroupFormProps) {
                 <div className="flex justify-center">
                     <FormButton label="Criar grupo" />
                 </div>
-                <div className="my-1">                    
-                    {errors.groupName && (                        
+                <div className="my-1">
+                    {errors.groupName && (
                         <p className=" overflow-hidden text-center text-redFail">
                             {errors.groupName.message}
-                        </p>                        
+                        </p>
                     )}
                 </div>
             </form>
