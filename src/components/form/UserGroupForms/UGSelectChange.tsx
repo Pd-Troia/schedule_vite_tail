@@ -1,3 +1,4 @@
+// UG = UserGroup
 import * as React from 'react';
 import { SelectInput } from '../SelectInput';
 import {useForm} from 'react-hook-form'
@@ -5,10 +6,10 @@ import { FormButton } from '../FormButton';
 import { MenuContext, menuKind } from '../../layout/Panel/UserGroup';
 
 export interface IUserGroupSelectChangeProps {
-    
+    handleExitMenu: ()=>void
 }
 
-export function UserGroupSelectChange (props: IUserGroupSelectChangeProps) {   
+export function UGSelectChange ({git}: IUserGroupSelectChangeProps) {   
     const {register,handleSubmit,formState: { errors }} = useForm()
     const {setMenuOption} = React.useContext(MenuContext)
     // test element
@@ -21,9 +22,7 @@ export function UserGroupSelectChange (props: IUserGroupSelectChangeProps) {
     const submit = (data:object)=>{
         console.log(data)
     }
-    const exitToMenu = ()=>{
-        setMenuOption(menuKind.menu)
-    }
+    
     return (
         <div className="flex h-full flex-col justify-around">
             <form className="h-full" onSubmit={handleSubmit(submit)}>
@@ -41,7 +40,7 @@ export function UserGroupSelectChange (props: IUserGroupSelectChangeProps) {
                 </div>
             </form>
             <div className="flex justify-center ">
-                <FormButton handleClick={exitToMenu} label={'Voltar ao menu'} />
+                <FormButton handleClick={handleExitMenu} label={'Voltar ao menu'} />
             </div>
         </div>
     )
