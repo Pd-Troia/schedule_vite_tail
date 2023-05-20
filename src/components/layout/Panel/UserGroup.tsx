@@ -13,6 +13,7 @@ export interface member {
 export interface IUserGroupProps {
     groupName: string
     members?: member[]
+    id: string
 }
 export enum menuKind {
     menu = 'menu',
@@ -20,18 +21,20 @@ export enum menuKind {
     insertMember = 'insertMember',
     removeMember = 'removeMember',
 }
-export interface ImenuContext {
+export interface IUGContext {
     menuOption: menuKind
     setMenuOption: React.Dispatch<menuKind>
+    id: string
 }
 
-export const MenuContext = React.createContext<ImenuContext>({
+export const UGContext = React.createContext<IUGContext>({
     menuOption: menuKind.menu,
     setMenuOption: () => {},
+    id: "context não carregado"
 })
 
 
-export function UserGroup({ groupName }: IUserGroupProps) {
+export function UserGroup({ groupName,id }: IUserGroupProps) {
     const [menuOption, setMenuOption] = React.useState<menuKind>(menuKind.menu)
 
     
@@ -40,7 +43,7 @@ export function UserGroup({ groupName }: IUserGroupProps) {
     },[])
 
     return (
-        <MenuContext.Provider value={{ menuOption, setMenuOption }}>
+        <UGContext.Provider value={{ menuOption, setMenuOption, id }}>
             <div className="flex h-[231px] w-[280px] flex-col content-between rounded-md bg-card p-3">
                 <div className="text-center">
                     <h1 className="text-3xl text-label">{groupName}</h1>
@@ -60,6 +63,6 @@ export function UserGroup({ groupName }: IUserGroupProps) {
                     }
                 })()}
             </div>
-        </MenuContext.Provider>
+        </UGContext.Provider>
     )
 }

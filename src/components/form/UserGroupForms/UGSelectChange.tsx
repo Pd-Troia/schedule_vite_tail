@@ -3,15 +3,15 @@ import * as React from 'react';
 import { SelectInput } from '../SelectInput';
 import {useForm} from 'react-hook-form'
 import { FormButton } from '../FormButton';
-import { MenuContext, menuKind } from '../../layout/Panel/UserGroup';
+import { UGContext, menuKind } from '../../layout/Panel/UserGroup';
 
 export interface IUserGroupSelectChangeProps {
     handleExitMenu: ()=>void
 }
 
-export function UGSelectChange ({git}: IUserGroupSelectChangeProps) {   
+export function UGSelectChange ({handleExitMenu}: IUserGroupSelectChangeProps) {   
     const {register,handleSubmit,formState: { errors }} = useForm()
-    const {setMenuOption} = React.useContext(MenuContext)
+    const {setMenuOption} = React.useContext(UGContext)
     // test element
     const elementsList = [
         { label: 'Opção 1', _id: '1' },

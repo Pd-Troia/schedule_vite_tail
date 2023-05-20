@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { UserGroupCardButton } from './UserGroupCardButton'
-import { MenuContext } from './UserGroup'
+import { UGContext } from './UserGroup'
 import { menuKind } from './UserGroup'
 export interface IUserGroupMenuProps {}
 
 export function UserGroupMenu(props: IUserGroupMenuProps) {
-    const {menuOption,setMenuOption} = React.useContext(MenuContext)
+    const {menuOption,setMenuOption} = React.useContext(UGContext)
     const handleClick = (option:menuKind)=>{ 
         setMenuOption(option)        
     }

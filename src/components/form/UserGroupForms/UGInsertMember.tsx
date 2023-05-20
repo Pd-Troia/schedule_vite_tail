@@ -3,46 +3,50 @@ import * as React from 'react';
 import { FormButton } from '../FormButton';
 import { SelectInput } from '../SelectInput';
 import {useForm} from 'react-hook-form'
-import { MenuContext } from '../../layout/Panel/UserGroup';
+import { UGContext } from '../../layout/Panel/UserGroup';
 import { Input } from '../Input';
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup';
-
+import { PanelContext } from '../../pages/Panel/Panel';
+import { createNotification } from '../../functions/fetches/createNotification';
 export interface IUGInsertMemberProps {
   handleExitMenu: () => void
 }
 
-const schema = yup.object({
-  email: yup
-    .string()
-    .email("Email inválido")    
-})
 
 export function UGInsertMember ({handleExitMenu}: IUGInsertMemberProps) {
+  const { setMenuOption,id } = React.useContext(UGContext)
+  const panelContext = React.useContext(PanelContext)
+  
+  //form area
+  const submit = (data: {email:string}) => {
+    const response = createNotification(panelContext.id,panelContext.token,data.email,id)   
+    
+  }
+  const schema = yup.object({
+    email: yup      
+      .string()
+      .email("Email inválido") 
+      .required("Campo obrigatório")   
+  })
+  
+  const cssInput= "rounded bg-inputForm p-1 w-full"
+  const cssBorder=  "border-inputForm"
+  const defaultBorderClass= "border border-lightBlue"
   const { register,handleSubmit,formState: { errors }} = useForm({
     resolver: yupResolver(schema),
     defaultValues:{
       email:""
     }
   })
-  const { setMenuOption } = React.useContext(MenuContext)
-  
-
-  const submit = (data: object) => {
-      console.log(data)
-  }
-  
-  const cssInput= "rounded bg-inputForm p-1 w-full"
-  const cssBorder=  "border-inputForm"
-  const defaultBorderClass= "border border-lightBlue"
   return (
-      <div className="flex h-full flex-col justify-around">
+    <div className="flex h-full flex-col justify-around">
           <form className="h-full" onSubmit={handleSubmit(submit)}>
               <div className="flex h-full w-full flex-col justify-center ">
                   <div>
                       <Input
                           name="email"
-                          placeholder="Insira o nome do grupo"
+                          placeholder="Insira o email"
                           register={register}
                           required="true"
                           type="text"
@@ -57,7 +61,7 @@ export function UGInsertMember ({handleExitMenu}: IUGInsertMemberProps) {
                     </span>
                   </div>
                   <div className="flex justify-center">
-                      <FormButton wFull={true} label="Trocar Rotina" />
+                      <FormButton wFull={true} label="Inserir Membro" />
                   </div>
               </div>
           </form>

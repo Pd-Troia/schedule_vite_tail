@@ -31,11 +31,7 @@ export function Groups(props: IPanelGroupsProps) {
                 <CreateGroupForm />
             </div>
             <div className="m-5 grid grid-cols-1 place-items-center justify-center gap-y-14 md:grid-cols-2 lg:grid-cols-3">
-                <UserGroup groupName="Teste1" />
-                <UserGroup groupName="Teste2" />
-                <UserGroup groupName="Teste3" />
-                <UserGroup groupName="Teste4" />
-                <UserGroup groupName="Teste5" />
+                <UserGroup id="6468bbc7f814f49615bd5388" groupName="Teste1" />                
             </div>
         </main>
     )
