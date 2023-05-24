@@ -2,7 +2,6 @@ import * as React from 'react'
 import useScreenSize from '../../functions/hooks/useScreenSize'
 import { CreateGroupForm } from '../../form/CreateGroupForm'
 import { UserGroup } from '../../layout/Panel/UserGroup'
-import { useGetRoutinesbyIdUserAsync } from '../../functions/hooks/useGetRoutinesAsync'
 
 export interface IPanelGroupsProps {}
 
