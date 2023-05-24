@@ -5,6 +5,7 @@ import useScreenSize from '../../functions/hooks/useScreenSize'
 import { AiOutlineMenu } from 'react-icons/ai'
 import { BiLogOut } from 'react-icons/bi'
 import { PanelContext } from '../../pages/Panel/Panel'
+import {Notification    } from './Notification'
 export interface IPanelHeaderProps {}
 
 export function PanelNavBar(props: IPanelHeaderProps) {
@@ -20,12 +21,15 @@ export function PanelNavBar(props: IPanelHeaderProps) {
     }
     const mobileVersion = (
         <div className="flex items-center justify-center">
-            <div className="cursor-pointer text-2xl justify-center flex">
-                <button onClick={handleMenu}>
+            <div className="flex cursor-pointer justify-center text-2xl">
+                <button onClick={handleMenu} className='text-label'>
                     <AiOutlineMenu />
                 </button>
             </div>
-            <button className="ml-7 text-2xl justify-center flex" onClick={logOut}>
+            <div className="mx-7">
+                <Notification />
+            </div>
+            <button className="flex justify-center text-2xl text-label" onClick={logOut}>
                 <BiLogOut />
             </button>
         </div>
@@ -37,9 +41,14 @@ export function PanelNavBar(props: IPanelHeaderProps) {
                 <NavButton to="/panel/grupos">Grupos</NavButton>
             </div>
             <NavButton to="/panel/rotinas">Rotinas</NavButton>
-            <button className="ml-7 text-2xl" onClick={logOut}>
-                <BiLogOut />
-            </button>
+            <div className="mx-7">
+                <Notification />
+            </div>
+            <div>
+                <button className="text-2xl text-label" onClick={logOut}>
+                    <BiLogOut />
+                </button>
+            </div>
         </div>
     )
     return (
