@@ -3,7 +3,7 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                plexThai: "IBM Plex Sans Thai Looped,serif",
+                plexThai: 'IBM Plex Sans Thai Looped,serif',
             },
             colors: {
                 greybg: '#EEF2F1',
@@ -22,21 +22,18 @@ module.exports = {
                 'black-90': '#0C0101',
                 cianTheme: '#61A0AF',
                 yellowBeige: '#CECE25',
-                button: "#D9D9D9",
-                card: "#BEBEBE",
-                label: "#545454",
-                tittle: "#262626",
-                panelPrimary: "#D9D9D9",
+                button: '#D9D9D9',
+                card: '#BEBEBE',
+                label: '#545454',
+                tittle: '#262626',
+                panelPrimary: '#D9D9D9',
                 panelSecondary: '#A6A6A6',
-                menuColor: "#0C0C0C",
-                tittleTheme: "#282828",
-                inputForm: "#B2B2B2",
-                secondaryButtonColor: "#3D3D3D",
-                secondaryButtonText: "#D2D2D2",
-                cardButton: "#D9D9D9"
-                
-                
-                
+                menuColor: '#0C0C0C',
+                tittleTheme: '#282828',
+                inputForm: '#B2B2B2',
+                secondaryButtonColor: '#3D3D3D',
+                secondaryButtonText: '#D2D2D2',
+                cardButton: '#D9D9D9',
             },
             screens: {
                 dmp: '320px',
@@ -45,5 +42,5 @@ module.exports = {
             },
         },
     },
-    plugins: [],
+    plugins: [require('tailwind-scrollbar')({ nocompatible: true })],
 }
