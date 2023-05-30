@@ -12,39 +12,56 @@ export interface INotificationsFetch
         idTarget: string
         idUserGroup: string
         _id: string
-        __v: string
+        userName: string
+        userGroupName: string
     }> {}
+export interface INotificationContext {
+    notifications: INotificationsFetch 
+    setNotifications: React.Dispatch<React.SetStateAction<INotificationsFetch >>
+}
+
+export const NotificationContext = React.createContext<INotificationContext>({
+    notifications: [],
+    setNotifications: () => {
+        console.log('Problema no NotificationContext')
+    },
+})
 
 export function Notification(props: INotificationProps) {
     const panelContext = React.useContext(PanelContext)
-    const [notifications, setNotifications] = React.useState<INotificationsFetch>()
+    const [notifications, setNotifications] =
+        React.useState<INotificationsFetch>([])
     React.useEffect(() => {
         ;(async () => {
-            setNotifications(
-                await getNotifications(panelContext.id, panelContext.token)
-            )
+            setNotifications( await getNotifications(panelContext.id, panelContext.token))
         })()
     }, [])
-    
-    const [notificationMenu,setNotificationMenu] = React.useState<boolean>(false)
-    const toggleNotification = ()=>{
-      setNotificationMenu(!notificationMenu)
+
+    const [notificationMenu, setNotificationMenu] =
+        React.useState<boolean>(false)
+    const toggleNotification = () => {
+        setNotificationMenu(!notificationMenu)
     }
     return (
-        <div className="relative">
-            <button onClick={toggleNotification} className=" text-2xl text-label">
-                <IoMdNotifications />
-            </button>
-            <div className="absolute left-4 top-3 rounded-full bg-label p-[1px]">
-                <p className="text-xs text-card">
-                    {notifications ? notifications.length : 0}
-                </p>
-            </div>
-            { notificationMenu &&(
-                <div className="absolute z-10 -right-[50px]">
-                    <NotificationList notificationList={notifications} />
+        <NotificationContext.Provider value={{notifications,setNotifications}}>
+            <div className="relative">
+                <button
+                    onClick={toggleNotification}
+                    className=" text-2xl text-label"
+                >
+                    <IoMdNotifications />
+                </button>
+                <div className="absolute left-4 top-3 rounded-full bg-label p-[1px]">
+                    <p className="text-xs text-card">
+                        {notifications ? notifications.length : 0}
+                    </p>
                 </div>
-          )}
-        </div>
+                {notificationMenu && (
+                    <div className="absolute -right-[50px] z-10">
+                        <NotificationList notList={notifications} />
+                    </div>
+                )}
+            </div>
+        </NotificationContext.Provider>
     )
 }
