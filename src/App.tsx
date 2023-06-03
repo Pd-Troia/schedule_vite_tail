@@ -16,18 +16,9 @@ function App() {
                     <Route element={<Home />} path="/" />
                     <Route element={<Register />} path="/cadastro" />
                     <Route element={<Panel />} path="/panel">
-                        <Route
-                            element={<Help />}
-                            path="/panel/ajuda"
-                        />
-                        <Route
-                            element={<Groups />}
-                            path="/panel/grupos"
-                        />
-                        <Route
-                            element={<Routines />}
-                            path="/panel/rotinas"
-                        />
+                        <Route element={<Help />} path="/panel/ajuda" />
+                        <Route element={<Groups />} path="/panel/grupos" />
+                        <Route element={<Routines />} path="/panel/rotinas" />                        
                     </Route>
                 </Routes>
             </BrowserRouter>

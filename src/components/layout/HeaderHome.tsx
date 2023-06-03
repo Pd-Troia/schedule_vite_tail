@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Link} from "react-scroll"
+import {Link} from "react-router-dom"
 import { LoginButton } from './LoginButton';
 
 export interface IHeaderHomeProps {
@@ -9,22 +9,18 @@ export interface IHeaderHomeProps {
 export default function HeaderHome ({column}: IHeaderHomeProps) {
     const flex : string = column ? "flex-column" : ""
     return (
-    <div className={`flex ${flex} justify-center`}>
-    <Link to="explain" smooth={true} duration={3000} >
+    <div className={`flex ${flex} justify-center`}>    
         <p className='cursor-pointer'>
             Sobre
+        </p>        
+    <Link to="panel">
+        <p className='mx-6 cursor-pointer'>
+            Panel
         </p>
-    </Link>
-    <a className='cursor-pointer'>
-        <p className='mx-6'>
-            Portifolio
-        </p>
-    </a>
-    <Link to="aboutus" smooth={true} duration={3000}>
+    </Link>    
         <p className='cursor-pointer'>
             Contato
-        </p>
-    </Link>
-        </div>
+        </p>    
+    </div>
   );
 }
