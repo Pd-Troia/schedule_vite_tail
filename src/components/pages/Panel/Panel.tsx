@@ -26,8 +26,8 @@ export function Panel(props: IPanelProps) {
     const [showMenu, setShowMenu] = useState<boolean>(false)      
     const token = localStorage.getItem('token')! 
     const id = localStorage.getItem('id')!     
-    const navigate = useNavigate() 
-    useEffect(()=>navigate("/panel/ajuda"),[])        
+    // const navigate = useNavigate() 
+    // useEffect(()=>navigate("/panel/ajuda"),[])        
     return (
         <PanelContext.Provider value={{ token, id, showMenu, setShowMenu }}>
             <div className="from-40% to-40% relative h-full bg-gradient-to-b from-panelPrimary to-panelSecondary ">

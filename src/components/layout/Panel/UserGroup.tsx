@@ -53,11 +53,11 @@ export function UserGroup({ groupName,id }: IUserGroupProps) {
                         case menuKind.menu:
                             return <UserGroupMenu />
                         case menuKind.changeRoutine:
-                            return <UGSelectChange handleExitMenu={exitToMenu}/>
+                            return <UGSelectChange actionButtonLabel='Trocar Rotina' handleExitMenu={exitToMenu}/>
                         case menuKind.insertMember:
                             return <UGInsertMember handleExitMenu={exitToMenu}/>
                         case menuKind.removeMember:
-                            return <div>789</div>
+                            return <UGSelectChange actionButtonLabel='Remover Membro' handleExitMenu={exitToMenu}/>
                         default:
                             return <p>Opção inválida</p>
                     }

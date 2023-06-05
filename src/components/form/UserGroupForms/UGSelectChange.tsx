@@ -6,11 +6,15 @@ import { FormButton } from '../FormButton';
 import { UGContext, menuKind } from '../../layout/Panel/UserGroup';
 
 export interface IUserGroupSelectChangeProps {
-    handleExitMenu: ()=>void
+    handleExitMenu: ()=>void,
+    actionButtonLabel: string,
+    submit: (data:object)=>void,
+    buildElementList: ()=>{label:string,_id:string}
 }
 
-export function UGSelectChange ({handleExitMenu}: IUserGroupSelectChangeProps) {   
+export function UGSelectChange ({submit,handleExitMenu,actionButtonLabel}: IUserGroupSelectChangeProps) {   
     const {register,handleSubmit,formState: { errors }} = useForm()
+
     const {setMenuOption} = React.useContext(UGContext)
     // test element
     const elementsList = [
@@ -18,10 +22,9 @@ export function UGSelectChange ({handleExitMenu}: IUserGroupSelectChangeProps) {
         { label: 'Opção 2', _id: '2' },
         { label: 'Opção 3', _id: '3' },
     ]
-
-    const submit = (data:object)=>{
-        console.log(data)
-    }
+    React.useEffect(()=>{
+        
+    },[])
     
     return (
         <div className="flex h-full flex-col justify-around">
@@ -35,7 +38,7 @@ export function UGSelectChange ({handleExitMenu}: IUserGroupSelectChangeProps) {
                         />
                     </div>
                     <div className="flex justify-center">
-                        <FormButton wFull={true} label="Trocar Rotina" />
+                        <FormButton wFull={true} label={actionButtonLabel} />
                     </div>
                 </div>
             </form>
