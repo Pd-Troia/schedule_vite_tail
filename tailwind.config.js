@@ -34,6 +34,8 @@ module.exports = {
                 secondaryButtonColor: '#3D3D3D',
                 secondaryButtonText: '#D2D2D2',
                 cardButton: '#D9D9D9',
+                lineColor: '#9A9A9A',
+                menuButtonsColor: '#9C9C9C'
             },
             screens: {
                 dmp: '320px',
