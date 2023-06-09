@@ -6,8 +6,8 @@ export interface IRoutinesListProps {
 export function RoutinesList (props: IRoutinesListProps) {
     const routines = [
         { label: 'Rotina 1', id: '1' },
-        // { label: 'Rotina 2', id: '2' },
-        // { label: 'Rotina 3', id: '3' },
+        { label: 'Rotina 2', id: '2' },
+        { label: 'Rotina 3', id: '3' },
     ]
     return (
     <div className=' flex flex-col bg-cardButton rounded-md w-[260px]'>

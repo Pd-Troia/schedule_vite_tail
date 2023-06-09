@@ -27,7 +27,7 @@ export function DotMenu (props: IDotMenuProps) {
                 <div className='relative' ref={dotMenu} onClick={()=>{setShowMenu(true)}}>
                     <HiDotsHorizontal />
                     { showMenu && (
-                    <div ref={refMenu} className="flex absolute top-0 right-0 flex-col rounded-md bg-card">
+                    <div ref={refMenu} className="flex z-10 absolute top-2 right-0 flex-col rounded-md bg-card">
                         <button ref={refButton1} className="px-1" onClick={() => {setShowMenu(false)}}>
                             Editar
                         </button>
