@@ -1,27 +1,35 @@
+import { KonvaEventObject } from 'konva/lib/Node';
 import * as React from 'react';
-import { BiBorderRadius } from 'react-icons/bi';
 import {Layer,Arc,Rect,Line} from 'react-konva'
+
 export interface IBackGroundBarProps {
-    baseWidth: number,
-    baseHeight: number,
-    borderRadius: number,
-    borderColor: string,
-    bgColor: string,
+    baseWidth: number
+    baseHeight: number
+    borderRadius: number
+    borderColor: string
+    bgColor: string
+    handleCircle: React.Dispatch<React.SetStateAction<number[]>>
 }
 
-export function BackGroundBar ({baseHeight,bgColor,borderColor,baseWidth,borderRadius}: IBackGroundBarProps) {
+export function BackGroundBar ({handleCircle,baseHeight,bgColor,borderColor,baseWidth,borderRadius}: IBackGroundBarProps) {
     const stageHeight = baseHeight
     const stageWidth = baseWidth
     const borderDistanceToBar = 1
+    const createCircle = (
+        e: KonvaEventObject<MouseEvent>
+    ) => {
+        console.log((e.evt as any).layerX)
+        handleCircle((previous: number[]) => [...previous, (e.evt as any).layerX])
+    }
     return (
         <>
-            <Layer>
+            <Layer onClick={createCircle}>
                 <Arc
                     rotation={90}
                     angle={180}
                     innerRadius={stageHeight / 2}
                     fill={bgColor}
-                    x={borderDistanceToBar + stageHeight / 2}
+                    x={stageHeight / 2}
                     y={stageHeight / 2}
                     outerRadius={0}
                 />
@@ -31,7 +39,7 @@ export function BackGroundBar ({baseHeight,bgColor,borderColor,baseWidth,borderR
                     innerRadius={stageHeight / 2}
                     fill={bgColor}
                     x={stageWidth - stageHeight / 2}
-                    y={stageHeight / 2}
+                    y={(stageHeight / 2)}
                     outerRadius={0}
                 />
                 <Rect

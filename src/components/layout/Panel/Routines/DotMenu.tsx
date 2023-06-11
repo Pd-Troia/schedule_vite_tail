@@ -14,8 +14,7 @@ export function DotMenu (props: IDotMenuProps) {
              const condition1 = refButton1.current?.contains(event.target as Node)
              const condition2 = refButton2.current?.contains(event.target as Node)     
              const condition3 = dotMenu.current?.contains(event.target as Node)     
-            if(!(condition1 || condition2||condition3)){
-                console.log("Close Menu")
+            if(!(condition1 || condition2||condition3)){                
                 setShowMenu(false)
             }            
         }
