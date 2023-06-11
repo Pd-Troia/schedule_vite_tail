@@ -28,6 +28,7 @@ export function RoutineBar(props: IRoutineBarProps) {
                     initialPositionCircles={stageHeight / 2}
                     diffPosCircles={(stageHeight / 2)+75}
                     yPos={stageHeight / 2}
+                    strokeLine={15}
                 />
             </Stage>
         </div>
