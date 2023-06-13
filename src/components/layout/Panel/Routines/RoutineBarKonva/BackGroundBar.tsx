@@ -8,17 +8,19 @@ export interface IBackGroundBarProps {
     borderRadius: number
     borderColor: string
     bgColor: string
+    yPos: number
     handleCircle: React.Dispatch<React.SetStateAction<number[]>>
 }
 
-export function BackGroundBar ({handleCircle,baseHeight,bgColor,borderColor,baseWidth,borderRadius}: IBackGroundBarProps) {
-    const stageHeight = baseHeight
+export function BackGroundBar ({handleCircle,yPos,baseHeight,bgColor,borderColor,baseWidth,borderRadius}: IBackGroundBarProps) {
+    const stageHeight = baseHeight   
+    const yPosArc = stageHeight/2 + yPos    
     const stageWidth = baseWidth
     const borderDistanceToBar = 1
     const createCircle = (
         e: KonvaEventObject<MouseEvent>
     ) => {
-        console.log((e.evt as any).layerX)
+        console.log((e.evt as any).layerY)
         handleCircle((previous: number[]) => [...previous, (e.evt as any).layerX])
     }
     return (
@@ -30,7 +32,7 @@ export function BackGroundBar ({handleCircle,baseHeight,bgColor,borderColor,base
                     innerRadius={stageHeight / 2}
                     fill={bgColor}
                     x={stageHeight / 2}
-                    y={stageHeight / 2}
+                    y={yPosArc}
                     outerRadius={0}
                 />
                 <Arc
@@ -39,14 +41,14 @@ export function BackGroundBar ({handleCircle,baseHeight,bgColor,borderColor,base
                     innerRadius={stageHeight / 2}
                     fill={bgColor}
                     x={stageWidth - stageHeight / 2}
-                    y={(stageHeight / 2)}
+                    y={yPosArc}
                     outerRadius={0}
                 />
                 <Rect
                     width={stageWidth - stageHeight + 1}
                     height={stageHeight}
                     x={stageHeight / 2}
-                    y={0}
+                    y={yPos}
                     fill={bgColor}
                 />
             </Layer>
@@ -57,7 +59,7 @@ export function BackGroundBar ({handleCircle,baseHeight,bgColor,borderColor,base
                     innerRadius={stageHeight / 2}
                     fill={borderColor}
                     x={stageHeight / 2}
-                    y={stageHeight / 2}
+                    y={yPosArc}
                     outerRadius={stageHeight / 2 - borderRadius}
                 />
                 <Arc
@@ -66,24 +68,32 @@ export function BackGroundBar ({handleCircle,baseHeight,bgColor,borderColor,base
                     innerRadius={stageHeight / 2}
                     fill={borderColor}
                     x={stageWidth - stageHeight / 2}
-                    y={stageHeight / 2}
+                    y={yPosArc}
                     outerRadius={stageHeight / 2 - borderRadius}
                 />
                 <Line
-                    points={[0,0,stageWidth-stageHeight+borderDistanceToBar,0]}
-                    height={stageHeight}                   
+                    points={[
+                        0,
+                        2,
+                        stageWidth - stageHeight + borderDistanceToBar,
+                        2,
+                    ]}                    
                     stroke={borderColor}
-                    strokeWidth={borderRadius*2}
-                    x={stageHeight/2}
-                    y={0}
+                    strokeWidth={borderRadius}
+                    x={stageHeight / 2}
+                    y={yPos}
                 />
                 <Line
-                    points={[0,stageHeight,stageWidth-stageHeight+borderDistanceToBar,stageHeight]}
-                    height={stageHeight}                   
+                    points={[
+                        0,
+                        stageHeight - 2,
+                        stageWidth - stageHeight + borderDistanceToBar,
+                        stageHeight - 2,
+                    ]}                    
                     stroke={borderColor}
-                    strokeWidth={borderRadius*2}
-                    x={stageHeight/2}
-                    y={0}
+                    strokeWidth={borderRadius}
+                    x={stageHeight / 2}
+                    y={yPos}
                 />
             </Layer>
         </>
