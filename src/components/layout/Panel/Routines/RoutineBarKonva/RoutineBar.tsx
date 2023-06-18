@@ -29,7 +29,7 @@ export function RoutineBar(props: IRoutineBarProps) {
                 />
                 <IntervalCircles
                     initialPositionCircles={barHeight / 2}
-                    diffPosCircles={barHeight / 2 + 75}
+                    diffPosCircles={barHeight / 2}
                     yPos={barHeight / 2 + yPos}
                     circleHeight={barHeight / 2}
                     strokeLine={15}
