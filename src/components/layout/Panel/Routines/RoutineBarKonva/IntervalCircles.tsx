@@ -47,7 +47,7 @@ export function IntervalCircles({
         if (xPos > e.target.getLayer().width() ) {
             xPos = e.target.getLayer().width() 
         }
-        if (xPos < 0 + initialPositionCircles) {
+        if (xPos < 0) {
             xPos = 0
         }
         e.target.setAttrs({

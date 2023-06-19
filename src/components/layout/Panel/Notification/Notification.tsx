@@ -56,7 +56,7 @@ export function Notification(props: INotificationProps) {
                         {notifications ? notifications.length : 0}
                     </p>
                 </div>
-                {notifications.length > 0 && (
+                {notifications && notifications.length > 0 && (
                     <div className="absolute -right-[50px] z-10">
                         <NotificationList notList={notifications} />
                     </div>

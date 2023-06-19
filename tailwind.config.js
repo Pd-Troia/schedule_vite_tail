@@ -1,3 +1,4 @@
+const scrollbar = require('tailwind-scrollbar')
 module.exports = {
     content: ['index.html', './src/**/*.{js,jsx,ts,tsx,vue,html}'],
     theme: {
@@ -35,7 +36,7 @@ module.exports = {
                 secondaryButtonText: '#D2D2D2',
                 cardButton: '#D9D9D9',
                 lineColor: '#9A9A9A',
-                menuButtonsColor: '#9C9C9C'
+                menuButtonsColor: '#9C9C9C',
             },
             screens: {
                 dmp: '320px',
@@ -44,5 +45,5 @@ module.exports = {
             },
         },
     },
-    plugins: [require('tailwind-scrollbar')({ nocompatible: true })],
-}
+    plugins: [scrollbar({ nocompatible: true })],
+};
