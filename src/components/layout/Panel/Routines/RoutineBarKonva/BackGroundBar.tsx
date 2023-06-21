@@ -9,29 +9,23 @@ export interface IBackGroundBarProps {
     borderColor: string
     bgColor: string
     yPos: number
-    handleCircle: React.Dispatch<React.SetStateAction<number[]>>
+    marginLeft: number    
 }
 
-export function BackGroundBar ({handleCircle,yPos,baseHeight,bgColor,borderColor,baseWidth,borderRadius}: IBackGroundBarProps) {
+export function BackGroundBar ({marginLeft,yPos,baseHeight,bgColor,borderColor,baseWidth,borderRadius}: IBackGroundBarProps) {
     const stageHeight = baseHeight   
     const yPosArc = stageHeight/2 + yPos    
-    const stageWidth = baseWidth
-    const borderDistanceToBar = 1
-    const createCircle = (
-        e: KonvaEventObject<MouseEvent>
-    ) => {
-        console.log((e.evt as any).layerY)
-        handleCircle((previous: number[]) => [...previous, (e.evt as any).layerX])
-    }
+    const stageWidth = baseWidth    
+    const borderDistanceToBar = 1    
     return (
         <>
-            <Layer onClick={createCircle}>
+            <Layer>
                 <Arc
                     rotation={90}
                     angle={180}
                     innerRadius={stageHeight / 2}
                     fill={bgColor}
-                    x={stageHeight / 2}
+                    x={(stageHeight / 2)+marginLeft}
                     y={yPosArc}
                     outerRadius={0}
                 />
@@ -40,14 +34,14 @@ export function BackGroundBar ({handleCircle,yPos,baseHeight,bgColor,borderColor
                     angle={180}
                     innerRadius={stageHeight / 2}
                     fill={bgColor}
-                    x={stageWidth - stageHeight / 2}
+                    x={(stageWidth - stageHeight / 2)+marginLeft}
                     y={yPosArc}
                     outerRadius={0}
                 />
                 <Rect
                     width={stageWidth - stageHeight + 1}
                     height={stageHeight}
-                    x={stageHeight / 2}
+                    x={(stageHeight / 2)+marginLeft}
                     y={yPos}
                     fill={bgColor}
                 />
@@ -58,7 +52,7 @@ export function BackGroundBar ({handleCircle,yPos,baseHeight,bgColor,borderColor
                     angle={180}
                     innerRadius={stageHeight / 2}
                     fill={borderColor}
-                    x={stageHeight / 2}
+                    x={(stageHeight / 2)+marginLeft}
                     y={yPosArc}
                     outerRadius={stageHeight / 2 - borderRadius}
                 />
@@ -67,7 +61,7 @@ export function BackGroundBar ({handleCircle,yPos,baseHeight,bgColor,borderColor
                     angle={180}
                     innerRadius={stageHeight / 2}
                     fill={borderColor}
-                    x={stageWidth - stageHeight / 2}
+                    x={(stageWidth - stageHeight / 2)+marginLeft}
                     y={yPosArc}
                     outerRadius={stageHeight / 2 - borderRadius}
                 />
@@ -80,7 +74,7 @@ export function BackGroundBar ({handleCircle,yPos,baseHeight,bgColor,borderColor
                     ]}                    
                     stroke={borderColor}
                     strokeWidth={borderRadius}
-                    x={stageHeight / 2}
+                    x={(stageHeight / 2)+marginLeft}
                     y={yPos}
                 />
                 <Line
@@ -92,7 +86,7 @@ export function BackGroundBar ({handleCircle,yPos,baseHeight,bgColor,borderColor
                     ]}                    
                     stroke={borderColor}
                     strokeWidth={borderRadius}
-                    x={stageHeight / 2}
+                    x={(stageHeight / 2)+marginLeft}
                     y={yPos}
                 />
             </Layer>

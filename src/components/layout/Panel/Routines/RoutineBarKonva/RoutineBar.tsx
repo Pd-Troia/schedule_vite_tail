@@ -6,12 +6,12 @@ import { IntervalCircles } from './IntervalCircles'
 
 export interface IRoutineBarProps {}
 
-export function RoutineBar(props: IRoutineBarProps) {
-    const dayInSeconds = 86400
-    const [intervals, setIntervals] = React.useState<{}>({})
+export function RoutineBar(props: IRoutineBarProps) {     
     const [width, height] = useScreenSize()
     const [circles, setCircles] = React.useState<number[]>([])
-    const stageWidth = width / 1.5    
+    const stageWidth = width / 1.5
+    const marginBar = 50
+    const barWidth = stageWidth - marginBar*2     
     const stageHeight = 500
     const barHeight = 50
     const yPos = 350
@@ -21,18 +21,19 @@ export function RoutineBar(props: IRoutineBarProps) {
                 <BackGroundBar
                     borderColor={'black'}
                     bgColor={'yellow'}
+                    marginLeft={marginBar}
                     borderRadius={4}
                     baseHeight={barHeight}
-                    baseWidth={stageWidth}
-                    handleCircle={setCircles}
+                    baseWidth={barWidth}                   
                     yPos={yPos}
                 />
                 <IntervalCircles
-                    initialPositionCircles={barHeight / 2}
+                    initialPositionCircles={(barHeight / 2)+marginBar}
                     diffPosCircles={barHeight / 2}
                     yPos={barHeight / 2 + yPos}
                     circleHeight={barHeight / 2}
-                    strokeLine={15}
+                    strokeLine={15}                    
+                    marginLeft={marginBar}                    
                 />
             </Stage>
         </div>
