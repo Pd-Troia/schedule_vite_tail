@@ -10,13 +10,17 @@ import { Layer, Circle, Line, Rect, RegularPolygon, Text } from 'react-konva'
 import { ref } from 'yup'
 import { intervalToHour } from '../../../../functions/Routine/intervalToHour'
 import { intervalToTimestamp } from '../../../../functions/Routine/intervalToTimeStamp'
+import { Iaction } from './IntervalsCirclesGroup'
 export interface IIntervalCirclesProps {
     initialPositionCircles: number
     diffPosCircles: number
     strokeLine: number
     yPos: number
     marginLeft:number    
-    circleHeight: number
+    circleHeight: number  
+    locket: boolean
+    id:number 
+    intervalsDispatcHandle: React.Dispatch<Iaction>
 }
 const getDistanceCircles = (n1: number, n2: number): number => {    
     if(n2<n1){
@@ -25,14 +29,17 @@ const getDistanceCircles = (n1: number, n2: number): number => {
         return (n2-n1)/2 + n1
     }
 }
-
+// start component
 export function IntervalCircles({
     initialPositionCircles,
     circleHeight,
     strokeLine,
     diffPosCircles,
     yPos,
-    marginLeft    
+    marginLeft,
+    locket,
+    intervalsDispatcHandle,    
+    id
 }: IIntervalCirclesProps) {
     const refCircle1 = React.useRef<CircleInterface | null>(null)
     const refCircle2 = React.useRef<CircleInterface | null>(null)
@@ -48,14 +55,14 @@ export function IntervalCircles({
     const marginRight = 1
     const marginCircleToBar = 25     
     
-    const handleDrag = (e: KonvaEventObject<DragEvent>) => {        
+    const handleDrag = (e: KonvaEventObject<DragEvent>) => {     
         let xPos = e.target.x()        
         if (xPos > e.target.getLayer().width()-marginLeft*3  ) {
             xPos = e.target.getLayer().width()-marginLeft*3
         }
         if (xPos < 0) {
             xPos = 0
-        }
+        }        
         e.target.setAttrs({
             x: xPos,
             y: yPos,
@@ -93,7 +100,7 @@ export function IntervalCircles({
             const value2 = intervalToTimestamp(
                 refCircle2.current?.x() || 0,
                 (refLayer.current?.width() || 0) - marginLeft * 3
-            )            
+            )                        
             refTextLeft.current &&
                 refTextLeft.current.setAttrs({
                     x: value1 < value2 ? leftPosition : rightPosition,
@@ -116,9 +123,20 @@ export function IntervalCircles({
                         (refRect.current?.x() || 0) +
                         informationBoxWidth/2,                    
                 })
+            //register changes
+            intervalsDispatcHandle({
+                type: 'UPDATE_INTERVAL',
+                payload: {
+                    initial: value1 < value2 ? value1 : value2,
+                    ending: value1 < value2 ? value2 : value1,
+                    label: "macarrão",
+                    id:id,
+                    locket:locket
+                },
+            }) 
     }
     return (
-        <Layer ref={refLayer} x={marginLeft+marginCircleToBar} >
+        <Layer ref={refLayer} x={marginLeft + marginCircleToBar}>
             <RegularPolygon
                 ref={refTriangle}
                 rotation={180}
@@ -143,10 +161,10 @@ export function IntervalCircles({
                 }
                 y={yPos - 200}
                 fill="green"
-            />            
+            />
             <Text
                 ref={refTextLeft}
-                text={""}
+                text={''}
                 fontSize={20}
                 x={
                     initialPositionCircles +
@@ -154,7 +172,7 @@ export function IntervalCircles({
                     informationBoxWidth / 2
                 }
                 y={yPos - 195}
-            />            
+            />
             <Text
                 ref={refTextMiddle}
                 text="-"
@@ -167,7 +185,7 @@ export function IntervalCircles({
             />
             <Text
                 ref={refTextRight}
-                text={""}
+                text={''}
                 fontSize={20}
                 x={
                     initialPositionCircles +
@@ -191,7 +209,7 @@ export function IntervalCircles({
             />
             <Circle
                 ref={refCircle1}
-                draggable
+                draggable={!locket}
                 onDragMove={handleDrag}
                 x={initialPositionCircles}
                 y={yPos}
@@ -200,7 +218,7 @@ export function IntervalCircles({
             />
             <Circle
                 ref={refCircle2}
-                draggable
+                draggable={!locket}
                 onDragMove={handleDrag}
                 x={initialPositionCircles + diffPosCircles}
                 y={yPos}
