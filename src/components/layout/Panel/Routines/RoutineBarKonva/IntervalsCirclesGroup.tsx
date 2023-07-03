@@ -26,7 +26,8 @@ export function IntervalsCirclesGroup({}: IIntervalsCirclesGroupProps) {
                             marginLeft={marginBar}
                             locket={false}     
                             circle1Pos={element.circle1Pos}
-                            circle2Pos={element.circle2Pos}                                                   
+                            circle2Pos={element.circle2Pos} 
+                            error={element.error}                                                  
                         />
                     )
                 })}

@@ -20,6 +20,7 @@ export interface IIntervalCirclesProps {
     id: number
     circle1Pos:number
     circle2Pos:number
+    error:boolean
 }
 const getDistanceCircles = (n1: number, n2: number): number => {    
     if(n2<n1){
@@ -34,7 +35,8 @@ export function IntervalCircles({
     strokeLine,    
     yPos,
     marginLeft,
-    locket,        
+    locket,
+    error,        
     id,
     circle1Pos,
     circle2Pos
@@ -215,7 +217,7 @@ export function IntervalCircles({
             />
             <Line
                 ref={refLine}
-                stroke="black"
+                stroke={error?"red": "black"}
                 strokeWidth={strokeLine}
                 lineCap="round"
                 points={[
